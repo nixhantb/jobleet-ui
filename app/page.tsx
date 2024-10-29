@@ -1,5 +1,5 @@
-"use client"
 
+'use client'
 import { Button } from "@/components/ui/button";
 import Navbar from "./components/Navbar";
 import { NavbarItems } from "./components/Navbar";
@@ -7,8 +7,9 @@ import { JobLeetProvider } from "@/lib/Jobleetcontext";
 import { ThemeProvider } from 'next-themes'
 import Layout from "./components/Layout";
 import Hero from "./components/Hero";
-import { Brain, BarChart, Link as LinkIcon, Users, Workflow } from "lucide-react";
+import { UserCheck, BarChart, GitBranch,Puzzle, UserPlus } from "lucide-react";
 import Features from "./components/Features";
+
 const navItems: NavbarItems[] = [
   { title: 'Home', href: '/' },
   {
@@ -40,32 +41,31 @@ const navItems: NavbarItems[] = [
     ],
   },
 ]
-
 const features = [
   {
-    title: 'Smart Candidate Matching',
-    description: 'AI-powered matching to connect the right candidates with the right jobs.',
-    icon: Brain,
+    title: 'Efficient Talent Acquisition',
+    description: 'Automate and optimize your recruitment process with our smart CRM, reducing the time spent on manual tasks.',
+    icon: UserCheck,
   },
   {
-    title: 'Recruitment Analytics',
+    title: 'Recruiter Tools and Analytics',
     description: 'Gain insights into your hiring process with comprehensive analytics.',
     icon: BarChart,
   },
   {
-    title: 'CRM powered',
-    description: 'Seamlessly provides smart  CRM features  for efficient entity management.',
-    icon: LinkIcon,
+    title: 'Personalized Job Matching',
+    description: 'Advanced algorithms match job seekers with relevant roles based on their skills, preferences, and career goals',
+    icon: Puzzle,
   },
   {
     title: 'Candidate Relationship Management',
     description: 'Build and maintain strong relationships with your talent pool.',
-    icon: Users,
+    icon: UserPlus,
   },
   {
     title: 'Automated Hiring Workflows',
     description: 'Streamline your hiring process with customizable automated workflows.',
-    icon: Workflow,
+    icon: GitBranch,
   },
 ]
 
