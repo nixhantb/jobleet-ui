@@ -37,7 +37,7 @@ export default function Navbar({
         if (item.dropdownItems && item.dropdownItems.length > 0) {
             return (
                 <DropdownMenu>
-                    <DropdownMenuTrigger>
+                    <DropdownMenuTrigger asChild>
                         <Button variant="ghost">
                             {item.title} <ChevronDown size={16} />
                         </Button>
