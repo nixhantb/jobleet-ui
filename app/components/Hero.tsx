@@ -34,7 +34,7 @@ export default function Hero({
   secondaryCTA
 }: HeroProps) {
   return (
-    <section className="relative py-20 w-full overflow-hidden">
+    <section className="relative py-20 w-auto overflow-hidden">
       <div className="container relative z-10 mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center">
           <div className="lg:w-1/2 lg:pr-10 mb-10 lg:mb-0">
