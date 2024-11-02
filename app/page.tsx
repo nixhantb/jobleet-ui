@@ -10,6 +10,7 @@ import Hero from "./components/Hero";
 import { UserCheck, BarChart, GitBranch,Puzzle, UserPlus } from "lucide-react";
 import Features from "./components/Features";
 import JobListings from "./components/JobListings";
+import { useState } from "react";
 
 const navItems: NavbarItems[] = [
   { title: 'Home', href: '/' },
@@ -96,6 +97,7 @@ const initialJobListings = [
   },
 ]
 export default function Home() {
+
   return (
 
     <JobLeetProvider>
@@ -126,7 +128,7 @@ export default function Home() {
               primaryCTA={{ text: "Get Started", href: "/signup" }}
               secondaryCTA={{ text: "Learn More", href: "/about" }}
             />
-             <JobListings title="Search Jobs" initialJobs={initialJobListings} />
+             <JobListings title = "Featured Jobs" initialJobs={initialJobListings}/>
             <Features title="key Features" features={features} />
            
           </main>
