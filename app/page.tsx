@@ -10,7 +10,7 @@ import Hero from "./components/Hero";
 import { UserCheck, BarChart, GitBranch,Puzzle, UserPlus } from "lucide-react";
 import Features from "./components/Features";
 import JobListings from "./components/JobListings";
-import { useState } from "react";
+
 
 const navItems: NavbarItems[] = [
   { title: 'Home', href: '/' },
