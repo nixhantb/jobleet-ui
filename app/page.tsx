@@ -9,6 +9,7 @@ import Layout from "./components/Layout";
 import Hero from "./components/Hero";
 import { UserCheck, BarChart, GitBranch,Puzzle, UserPlus } from "lucide-react";
 import Features from "./components/Features";
+import JobListings from "./components/JobListings";
 
 const navItems: NavbarItems[] = [
   { title: 'Home', href: '/' },
@@ -68,7 +69,32 @@ const features = [
     icon: GitBranch,
   },
 ]
-
+const initialJobListings = [
+  {
+    id: 1,
+    title: 'Senior Software Engineer',
+    company: 'TechCorp',
+    location: 'San Francisco, CA',
+    type: 'Full-time',
+    description: 'We are seeking a talented Senior Software Engineer to join our innovative team...',
+  },
+  {
+    id: 2,
+    title: 'Marketing Manager',
+    company: 'GrowthCo',
+    location: 'New York, NY',
+    type: 'Full-time',
+    description: 'GrowthCo is looking for an experienced Marketing Manager to lead our marketing efforts...',
+  },
+  {
+    id: 3,
+    title: 'UX Designer',
+    company: 'DesignHub',
+    location: 'Remote',
+    type: 'Contract',
+    description: 'Join our team of creative UX Designers and help shape the future of digital experiences...',
+  },
+]
 export default function Home() {
   return (
 
@@ -100,7 +126,9 @@ export default function Home() {
               primaryCTA={{ text: "Get Started", href: "/signup" }}
               secondaryCTA={{ text: "Learn More", href: "/about" }}
             />
+             <JobListings title="Search Jobs" initialJobs={initialJobListings} />
             <Features title="key Features" features={features} />
+           
           </main>
         </Layout>
 
