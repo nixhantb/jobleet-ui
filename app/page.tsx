@@ -7,9 +7,10 @@ import { JobLeetProvider } from "@/lib/Jobleetcontext";
 import { ThemeProvider } from 'next-themes'
 import Layout from "./components/Layout";
 import Hero from "./components/Hero";
-import { UserCheck, BarChart, GitBranch,Puzzle, UserPlus } from "lucide-react";
+import { UserCheck, BarChart, GitBranch,Puzzle, UserPlus, Facebook, Twitter, Linkedin, Instagram  } from "lucide-react";
 import Features from "./components/Features";
 import JobListings from "./components/JobListings";
+import Footer from "./components/Footer";
 
 
 const navItems: NavbarItems[] = [
@@ -73,29 +74,72 @@ const features = [
 const initialJobListings = [
   {
     id: 1,
-    title: 'Senior Software Engineer',
-    company: 'TechCorp',
+    companyName: 'TechCorp',
     location: 'San Francisco, CA',
-    type: 'Full-time',
-    description: 'We are seeking a talented Senior Software Engineer to join our innovative team...',
+    jobTitle: 'Senior Software Engineer',
+    jobDescription: 'We are seeking a talented Senior Software Engineer to join our innovative team, working on cutting-edge technology solutions.',
+    postedTime: '3 days ago',
+    jobType: 'Full-time',
+    image: '',
+    keySkills: ['JavaScript', 'TypeScript', 'React', 'Node.js', 'AWS'],
   },
   {
     id: 2,
-    title: 'Marketing Manager',
-    company: 'GrowthCo',
+    companyName: 'GrowthCo',
     location: 'New York, NY',
-    type: 'Full-time',
-    description: 'GrowthCo is looking for an experienced Marketing Manager to lead our marketing efforts...',
+    jobTitle: 'Marketing Manager',
+    jobDescription: 'GrowthCo is looking for an experienced Marketing Manager to lead our marketing efforts and drive growth through strategic campaigns.',
+    postedTime: '1 week ago',
+    jobType: 'Full-time',
+    image: '',
+    keySkills: ['Marketing Strategy', 'SEO', 'Content Marketing', 'Data Analysis'],
   },
   {
     id: 3,
-    title: 'UX Designer',
-    company: 'DesignHub',
+    companyName: 'DesignHub',
     location: 'Remote',
-    type: 'Contract',
-    description: 'Join our team of creative UX Designers and help shape the future of digital experiences...',
+    jobTitle: 'UX Designer',
+    jobDescription: 'Join our team of creative UX Designers and help shape the future of digital experiences with a user-centered approach.',
+    postedTime: '5 days ago',
+    jobType: 'Contract',
+    image: '',
+    keySkills: ['Figma', 'Sketch', 'Prototyping', 'User Research', 'UI Design'],
   },
-]
+  {
+    id: 4,
+    companyName: 'FinancePlus',
+    location: 'Chicago, IL',
+    jobTitle: 'Data Analyst',
+    jobDescription: 'FinancePlus is looking for a data-driven individual to analyze financial data and generate insights for strategic decisions.',
+    postedTime: '2 days ago',
+    jobType: 'Full-time',
+    image: '',
+    keySkills: ['SQL', 'Excel', 'Data Visualization', 'Python', 'Power BI'],
+  },
+  {
+    id: 5,
+    companyName: 'Healthify',
+    location: 'Austin, TX',
+    jobTitle: 'Healthcare Consultant',
+    jobDescription: 'We are seeking a Healthcare Consultant to provide expert advice and support for our healthcare clients.',
+    postedTime: '2 weeks ago',
+    jobType: 'Part-time',
+    image: '',
+    keySkills: ['Healthcare Management', 'Client Relations', 'Data Analysis', 'Research'],
+  },
+  {
+    id: 6,
+    companyName: 'EcoEnergy',
+    location: 'Denver, CO',
+    jobTitle: 'Environmental Engineer',
+    jobDescription: 'EcoEnergy is hiring an Environmental Engineer to develop sustainable solutions for environmental challenges.',
+    postedTime: '4 days ago',
+    jobType: 'Full-time',
+    image: '',
+    keySkills: ['Environmental Science', 'Sustainability', 'Project Management', 'AutoCAD'],
+  }
+];
+
 export default function Home() {
 
   return (
@@ -129,9 +173,25 @@ export default function Home() {
               secondaryCTA={{ text: "Learn More", href: "/about" }}
             />
              <JobListings title = "Featured Jobs" initialJobs={initialJobListings}/>
-            <Features title="key Features" features={features} />
+            <Features title="Our Services" features={features} />
            
           </main>
+          <Footer
+            companyName="JobLeet"
+            companyDescription="Connecting talent, empowering recruiters, and simplifying hiring."
+            quickLinks={[
+              { title: "About Us", href: "/about" },
+              { title: "Privacy Policy", href: "/privacy" },
+              { title: "Terms of Service", href: "/terms" },
+              { title: "Contact Us", href: "/contact" },
+            ]}
+            socialLinks={[
+              { icon: Facebook, href: "#" },
+              { icon: Twitter, href: "#" },
+              { icon: Linkedin, href: "#" },
+              { icon: Instagram, href: "#" },
+            ]}
+          />
         </Layout>
 
       </ThemeProvider>
