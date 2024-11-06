@@ -1,12 +1,13 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Search, MapPin, X, Building2, BookmarkPlus } from 'lucide-react'
+import { Search, MapPin, X, Building2, BookmarkPlus, ChevronRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import Image from 'next/image'
+import Link from 'next/link'
 
 type Job = {
   id: number
@@ -113,18 +114,27 @@ export default function JobListings({ title, initialJobs }: JobListingsProps) {
                     <span className="sr-only">Save job</span>
                   </Button>
                 </div>
-                <p className="text-sm text-muted-foreground mb-2">
+                <p className="text-sm  mb-2">
                   <MapPin className="inline-block mr-1 h-4 w-4" /> {job.location} • {job.jobType}
                 </p>
-                <p className="text-sm mb-4">{job.jobDescription}</p>
+                <p className="text-sm text-muted-foreground mb-4">{job.jobDescription}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {job.keySkills.map((skill, index) => (
-                    <Badge key={index} variant="outline">{skill}</Badge>
+                    <Badge className = "text-muted-foreground" key={index} variant="outline">{skill}</Badge>
                   ))}
                 </div>
                 <p className="text-xs text-muted-foreground mb-4">Posted {job.postedTime}</p>
-                <Button className="w-full">Apply</Button>
+                <Link
+                  href={`/job/${job.id}`} 
+                  className="inline-flex items-center text-sm text-primary hover:underline transition-colors duration-200"
+                  aria-label={`View more information about ${job.jobTitle} at ${job.companyName}`}
+                >
+                  View More Information
+                  <ChevronRight className="ml-1 h-4 w-4" />
+                </Link>
+               
               </CardContent>
+              
             </Card>
           ))}
         </div>
