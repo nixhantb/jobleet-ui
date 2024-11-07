@@ -9,9 +9,9 @@ import Layout from "./components/Layout";
 import Hero from "./components/Hero";
 import { UserCheck, BarChart, GitBranch,Puzzle, UserPlus, Facebook, Twitter, Linkedin, Instagram  } from "lucide-react";
 import Features from "./components/Features";
-import JobListings from "./components/JobListings";
 import Footer from "./components/Footer";
-
+import Engine from "./components/Engine";
+import JobListings from "./components/JobListings";
 
 const navItems: NavbarItems[] = [
   { title: 'Home', href: '/' },
@@ -104,44 +104,11 @@ const initialJobListings = [
     jobType: 'Contract',
     image: '',
     keySkills: ['Figma', 'Sketch', 'Prototyping', 'User Research', 'UI Design'],
-  },
-  {
-    id: 4,
-    companyName: 'FinancePlus',
-    location: 'Chicago, IL',
-    jobTitle: 'Data Analyst',
-    jobDescription: 'FinancePlus is looking for a data-driven individual to analyze financial data and generate insights for strategic decisions.',
-    postedTime: '2 days ago',
-    jobType: 'Full-time',
-    image: '',
-    keySkills: ['SQL', 'Excel', 'Data Visualization', 'Python', 'Power BI'],
-  },
-  {
-    id: 5,
-    companyName: 'Healthify',
-    location: 'Austin, TX',
-    jobTitle: 'Healthcare Consultant',
-    jobDescription: 'We are seeking a Healthcare Consultant to provide expert advice and support for our healthcare clients.',
-    postedTime: '2 weeks ago',
-    jobType: 'Part-time',
-    image: '',
-    keySkills: ['Healthcare Management', 'Client Relations', 'Data Analysis', 'Research'],
-  },
-  {
-    id: 6,
-    companyName: 'EcoEnergy',
-    location: 'Denver, CO',
-    jobTitle: 'Environmental Engineer',
-    jobDescription: 'EcoEnergy is hiring an Environmental Engineer to develop sustainable solutions for environmental challenges.',
-    postedTime: '4 days ago',
-    jobType: 'Full-time',
-    image: '',
-    keySkills: ['Environmental Science', 'Sustainability', 'Project Management', 'AutoCAD'],
   }
 ];
 
 export default function Home() {
-
+ 
   return (
 
     <JobLeetProvider>
@@ -164,7 +131,7 @@ export default function Home() {
             }
 
           ></Navbar>
-
+         
           <main>
             <Hero
               title="Connecting Talent, Empowering Recruiters"
@@ -172,7 +139,8 @@ export default function Home() {
               primaryCTA={{ text: "Get Started", href: "/signup" }}
               secondaryCTA={{ text: "Learn More", href: "/about" }}
             />
-             <JobListings title = "Featured Jobs" initialJobs={initialJobListings}/>
+             <JobListings initialJobs={initialJobListings}/>
+             <Engine/>
             <Features title="Our Services" features={features} />
            
           </main>

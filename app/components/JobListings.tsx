@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Search, MapPin, X, Building2, BookmarkPlus, ChevronRight } from 'lucide-react'
+import { Search, MapPin, X, Building2, BookmarkPlus, ChevronRight, Briefcase, ChevronDown } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
@@ -22,11 +22,10 @@ type Job = {
 }
 
 type JobListingsProps = {
-  title: string
   initialJobs: Job[]
 }
 
-export default function JobListings({ title, initialJobs }: JobListingsProps) {
+export default function JobListings({ initialJobs }: JobListingsProps) {
   const [searchTerm, setSearchTerm] = useState('')
   const [location, setLocation] = useState('')
   const [filteredJobs, setFilteredJobs] = useState<Job[]>(initialJobs)
@@ -50,30 +49,60 @@ export default function JobListings({ title, initialJobs }: JobListingsProps) {
 
   return (
     <section className="py-20">
+
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">{title}</h2>
-        <div className="flex flex-col md:flex-row gap-4 mb-8">
-          <div className="relative flex-grow">
-            <Input
-              type="text"
-              placeholder="Search jobs, companies, or keywords"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-md h-12"
-            />
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-          </div>
-          <div className="relative w-full md:w-[200px]">
-            <Input
-              type="text"
-              placeholder="Location"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-md h-12"
-            />
-            <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+        <div className="w-full">
+          <div className="rounded-lg p-8">
+            <h2 className="text-3xl font-bold text-center mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-600">Find Your Dream Job</h2>
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="relative flex-grow group">
+                  <Input
+                    type="text"
+                    placeholder="Search jobs, companies, or keywords"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-12 pr-4 py-6 w-full border-2 border-gray-200 rounded-lg text-lg transition-all duration-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  />
+                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-indigo-500 transition-colors duration-300" size={24} />
+                  <Briefcase className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" size={24} />
+                </div>
+                <div className="relative md:w-[300px] group">
+                  <Input
+                    type="text"
+                    placeholder="Location"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    className="pl-12 pr-4 py-6 w-full border-2 border-gray-200 rounded-lg text-lg transition-all duration-300 focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50"
+                  />
+                  <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-purple-500 transition-colors duration-300" size={24} />
+                </div>
+              </div>
+              <div className="flex flex-col md:flex-row gap-4">
+
+              </div>
+            </form>
+            <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+              <span className="flex items-center hover:text-indigo-600 cursor-pointer transition-colors duration-300">
+                <Briefcase size={16} className="mr-2" />
+                Popular: UX Designer
+              </span>
+              <span className="flex items-center hover:text-indigo-600 cursor-pointer transition-colors duration-300">
+                <Briefcase size={16} className="mr-2" />
+                Software Engineer
+              </span>
+              <span className="flex items-center hover:text-indigo-600 cursor-pointer transition-colors duration-300">
+                <Briefcase size={16} className="mr-2" />
+                Data Scientist
+              </span>
+              <span className="flex items-center hover:text-indigo-600 cursor-pointer transition-colors duration-300">
+                <ChevronDown size={16} className="mr-2" />
+                More
+              </span>
+            </div>
           </div>
         </div>
+
 
         <div className="flex flex-wrap gap-2 mb-8">
           {searchTerm && (
@@ -120,21 +149,21 @@ export default function JobListings({ title, initialJobs }: JobListingsProps) {
                 <p className="text-sm text-muted-foreground mb-4">{job.jobDescription}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {job.keySkills.map((skill, index) => (
-                    <Badge className = "text-muted-foreground" key={index} variant="outline">{skill}</Badge>
+                    <Badge className="text-muted-foreground" key={index} variant="outline">{skill}</Badge>
                   ))}
                 </div>
                 <p className="text-xs text-muted-foreground mb-4">Posted {job.postedTime}</p>
                 <Link
-                  href={`/job/${job.id}`} 
+                  href={`/job/${job.id}`}
                   className="inline-flex items-center text-sm text-primary hover:underline transition-colors duration-200"
                   aria-label={`View more information about ${job.jobTitle} at ${job.companyName}`}
                 >
-                  View More Information
+                  Learn More
                   <ChevronRight className="ml-1 h-4 w-4" />
                 </Link>
-               
+
               </CardContent>
-              
+
             </Card>
           ))}
         </div>
