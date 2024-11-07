@@ -25,7 +25,7 @@ export default function Component() {
                 <div className="relative">
 
                     <div className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 top-0 z-10">
-                        <div className="w-44 h-20 mx-auto mb-16 relative">
+                        <div className="w-72 h-16 mx-auto mb-16 relative">
                             <div className="absolute inset-0 rounded-xl border border-gray-300 " />
                             <div className="absolute inset-[2px] rounded-lg border border-gray-300" />
 
@@ -40,9 +40,9 @@ export default function Component() {
 
                     <div className="absolute inset-0 pointer-events-none">
 
-                        <div className="absolute top-1 left-1/2 -translate-x-1/2 w-[80%] h-[3px] bg-gray-300 dark:bg-gray-800 transition-colors duration-300">
+                        <div className="absolute top-11 left-1/2 -translate-x-1/2 w-[80%] h-[3px] bg-gray-300 dark:bg-gray-800 transition-colors duration-300">
                             <div
-                                className="absolute top-0 left-0 w-[20%] h-full bg-gradient-to-r from-transparent via-blue-500 to-transparent"
+                                className="absolute top-10 left-0 w-[20%] h-full bg-gradient-to-r from-transparent via-blue-500 to-transparent"
                                 style={{ left: `${neonPosition}%` }}
                             />
                         </div>
@@ -51,7 +51,7 @@ export default function Component() {
                         {[0, 1, 2].map((index) => (
                             <div
                                 key={index}
-                                className="absolute top-1 h-40 w-[3px] bg-gray-300 dark:bg-gray-800 transition-colors duration-300"
+                                className="absolute top-1 h-44 w-[3px] bg-gray-300 dark:bg-gray-800 transition-colors duration-300"
                                 style={{ left: `${25 + (index * 25)}%` }}
                             >
                                 <div

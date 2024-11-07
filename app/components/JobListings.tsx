@@ -62,44 +62,54 @@ export default function JobListings({ initialJobs }: JobListingsProps) {
                     placeholder="Search jobs, companies, or keywords"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-12 pr-4 py-6 w-full border-2 border-gray-200 rounded-lg text-lg transition-all duration-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    className="pl-8 pr-4 py-3 h-12 sm:h-14 md:h-16 text-xs sm:text-sm md:text-base w-full border-2 border-gray-200 rounded-lg transition-all duration-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   />
-                  <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-indigo-500 transition-colors duration-300" size={24} />
-                  <Briefcase className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" size={24} />
+                  <Search
+                    className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-indigo-500 transition-colors duration-300"
+                    size={16}
+                  />
                 </div>
-                <div className="relative md:w-[300px] group">
+
+                <div className="relative w-full md:w-[300px] group">
                   <Input
                     type="text"
                     placeholder="Location"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    className="pl-12 pr-4 py-6 w-full border-2 border-gray-200 rounded-lg text-lg transition-all duration-300 focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50"
+                    className="pl-8 pr-4 py-3 h-12 sm:h-14 md:h-16 text-xs sm:text-sm md:text-base w-full border-2 border-gray-200 rounded-lg transition-all duration-300 focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50"
                   />
-                  <MapPin className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-purple-500 transition-colors duration-300" size={24} />
+                  <MapPin
+                    className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-purple-500 transition-colors duration-300"
+                    size={16}
+                  />
                 </div>
               </div>
+
+
               <div className="flex flex-col md:flex-row gap-4">
 
               </div>
             </form>
-            <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-gray-600">
-              <span className="flex items-center hover:text-indigo-600 cursor-pointer transition-colors duration-300">
+            <div className="mt-8 grid grid-cols-2 justify-center sm:flex sm:flex-wrap gap-2 sm:gap-4 text-sm text-gray-600">
+              <span className="flex items-center hover:text-indigo-600 cursor-pointer transition-colors duration-300 sm:text-base md:text-sm">
                 <Briefcase size={16} className="mr-2" />
-                Popular: UX Designer
+                UX Designer
               </span>
-              <span className="flex items-center hover:text-indigo-600 cursor-pointer transition-colors duration-300">
+              <span className="flex items-center hover:text-indigo-600 cursor-pointer transition-colors duration-300 sm:text-base md:text-sm">
                 <Briefcase size={16} className="mr-2" />
-                Software Engineer
+                Tester
               </span>
-              <span className="flex items-center hover:text-indigo-600 cursor-pointer transition-colors duration-300">
+              <span className="flex items-center hover:text-indigo-600 cursor-pointer transition-colors duration-300 sm:text-base md:text-sm">
                 <Briefcase size={16} className="mr-2" />
                 Data Scientist
               </span>
-              <span className="flex items-center hover:text-indigo-600 cursor-pointer transition-colors duration-300">
+              <span className="flex items-center hover:text-indigo-600 cursor-pointer transition-colors duration-300 sm:text-base md:text-sm">
                 <ChevronDown size={16} className="mr-2" />
                 More
               </span>
             </div>
+
+
           </div>
         </div>
 
