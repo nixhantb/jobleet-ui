@@ -62,7 +62,7 @@ export default function JobListings({ initialJobs }: JobListingsProps) {
                     placeholder="Search jobs, companies, or keywords"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-8 pr-4 py-3 h-12 sm:h-14 md:h-16 text-xs sm:text-sm md:text-base w-full border-2 border-gray-200 rounded-lg transition-all duration-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                    className="pl-8 pr-4 py-3 h-12 sm:h-14 md:h-16 text-sm sm:text-base md:text-lg w-full border-2 border-gray-200 rounded-lg transition-all duration-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   />
                   <Search
                     className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-indigo-500 transition-colors duration-300"
@@ -76,7 +76,7 @@ export default function JobListings({ initialJobs }: JobListingsProps) {
                     placeholder="Location"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    className="pl-8 pr-4 py-3 h-12 sm:h-14 md:h-16 text-xs sm:text-sm md:text-base w-full border-2 border-gray-200 rounded-lg transition-all duration-300 focus:border-purple-500 focus:ring focus:ring-purple-200 focus:ring-opacity-50"
+                    className="pl-8 pr-4 py-3 h-12 sm:h-14 md:h-16 text-sm sm:text-base md:text-lg w-full border-2 border-gray-200 rounded-lg transition-all duration-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   />
                   <MapPin
                     className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 group-hover:text-purple-500 transition-colors duration-300"
