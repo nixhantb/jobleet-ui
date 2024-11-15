@@ -19,11 +19,11 @@ interface HeroProps {
 }
 // Dummy data : Later it will be updated with real data
 const carouselItems = [
+  { icon: UserIcon, title: "Diverse Talent Pool", description: "Access candidates from all backgrounds" },
   { icon: BriefcaseIcon, title: "10,000+ Jobs", description: "Find your dream job from our vast database" },
   { icon: ChartBarIcon, title: "Advanced Analytics", description: "Make data-driven hiring decisions" },
   { icon: GlobeIcon, title: "Global Reach", description: "Connect with talent worldwide" },
   { icon: LightbulbIcon, title: "AI Matching", description: "Smart algorithms for perfect job fits" },
-  { icon: UserIcon, title: "Diverse Talent Pool", description: "Access candidates from all backgrounds" },
   { icon: RocketIcon, title: "Fast Hiring", description: "Streamline your recruitment process" },
 ]
 

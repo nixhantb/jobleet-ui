@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { ArrowUpRight, BadgeCheck } from 'lucide-react'
+import { ArrowUpRight, BriefcaseConveyorBelt, Building, Building2 } from 'lucide-react'
 
 
 
-export default function Component() {
+export default function About() {
     const [hoveredCard, setHoveredCard] = useState<number | null>(null)
     const [neonPosition, setNeonPosition] = useState(0)
 
@@ -31,7 +31,7 @@ export default function Component() {
 
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <span className="text-xl font-bold">
-                                    Powered By
+                                    Why JobLeet?
                                 </span>
                             </div>
                         </div>
@@ -67,30 +67,31 @@ export default function Component() {
 
                     <div className="grid md:grid-cols-3 gap-6 pt-24">
                         {[
+                            
                             {
-                                title: "NextJs",
+                                title: "Companies",
                                 icon: (
-                                    <BadgeCheck />
+                                    <Building2 />
                                 ),
-                                description: "The library for web and native user interfaces. Next.js is built on the latest React features, including Server Components and Actions.",
-                                color: "blue",
-                            },
-                            {
-                                title: ".NET",
-                                icon: (
-                                    <BadgeCheck />
-                                ),
-                                description: "A versatile framework from Microsoft for building cross-platform applications with high performance and scalability.",
+                                description: "Finding top talent has never been easier. As your trusted recruitment partner, JobLeet helps you identify the right candidates quickly and efficiently. Share your hiring needs with us, and we’ll do the heavy lifting—saving you time and ensuring you find the perfect fit.",
                                 color: "purple",
                             },
                             {
-                                title: "PostgreSQL",
+                                title: "Employers",
                                 icon: (
-                                    <BadgeCheck />
+                                    <Building />
                                 ),
-                                description: "An advanced open-source relational database system known for reliability, robust feature set, and extensibility.",
+                                description: "Build the team you need to succeed with JobLeet. From managing applications to scheduling interviews, we provide tools that simplify the hiring process. Need assistance finding exceptional talent? Just ask us—we’re here to make recruitment effortless and effective.",
                                 color: "blue",
                             },
+                            {
+                                title: "Job Seekers",
+                                icon: (
+                                    <BriefcaseConveyorBelt />
+                                ),
+                                description: "Ready to take the next step in your career? JobLeet connects you with opportunities that match your skills and goals. With personalized job suggestions and real-time updates, we make your job search smooth and stress-free. Let us help you land your dream job!",
+                                color: "blue",
+                            }
 
                         ].map((card, index) => (
                             <div

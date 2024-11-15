@@ -10,18 +10,21 @@ import Hero from "./components/Hero";
 import { UserCheck, BarChart, GitBranch,Puzzle, UserPlus, Facebook, Twitter, Linkedin, Instagram  } from "lucide-react";
 import Features from "./components/Features";
 import Footer from "./components/Footer";
-import Engine from "./components/Engine";
+import About from "./components/About";
 import JobListings from "./components/JobListings";
 
 const navItems: NavbarItems[] = [
   { title: 'Home', href: '/' },
   {
-    title: 'Recruiters',
-    href: '/recruiters',
+    title: 'Companies',
+    href: '/companies',
     dropdownItems: [
-      { title: 'CRM Tools', href: '/recruiters/crm-tools' },
-      { title: 'Candidates', href: '/recruiters/candidate-matching' },
-      { title: 'Analytics', href: '/recruiters/analytics' },
+      { title: 'Candidates Matching', href: '/companies/candidates-matching' },
+      { title: 'CRM Tools', href: '/companies/crm-tools' },
+      { title: 'Events', href: '/companies/events' },
+      { title: 'Job Fairs', href: '/companies/fairs' },
+      { title: 'Trainings', href: '/companies/trainings' },
+      
     ],
   },
   {
@@ -134,13 +137,13 @@ export default function Home() {
          
           <main>
             <Hero
-              title="Connecting Talent, Empowering Recruiters"
-              description="JobLeet's smart CRM platform simplifies hiring, connecting top talent with recruiters effortlessly."
+              title="Connecting Talent, Boosting Recruitment"
+              description="JobLeet makes hiring easy and simple by connecting top talent with the right recruiters."
               primaryCTA={{ text: "Get Started", href: "/signup" }}
               secondaryCTA={{ text: "Learn More", href: "/about" }}
             />
              <JobListings initialJobs={initialJobListings}/>
-             <Engine/>
+             <About/>
             <Features title="Our Services" features={features} />
            
           </main>

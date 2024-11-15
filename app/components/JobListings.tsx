@@ -73,7 +73,7 @@ export default function JobListings({ initialJobs }: JobListingsProps) {
       <div className="container mx-auto px-4">
         <div className="w-full">
           <div className="rounded-lg p-4 md:p-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-pink-600">Find Your Dream Job</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-4 md:mb-6 bg-clip-text">Find Your Dream Job</h2>
             <form onSubmit={(e) => e.preventDefault()} className="space-y-4 md:space-y-6">
               <div className="flex flex-col md:flex-row gap-4">
                 <div className="relative flex-grow group">
