@@ -32,6 +32,8 @@ const navItems: NavbarItems[] = [
     href: '/employers',
     dropdownItems: [
       { title: 'Post a Job', href: '/employers/post-job' },
+      { title: 'Tack applications', href: '/employers/applications' },
+      { title: 'Schedule Interview', href: '/job-seekers/interviews' },
       { title: 'Talent Pool', href: '/employers/talent-pool' },
       { title: 'Hiring Solutions', href: '/employers/hiring-solutions' },
     ],
@@ -40,10 +42,13 @@ const navItems: NavbarItems[] = [
     title: 'Job Seekers',
     href: '/job-seekers',
     dropdownItems: [
+      { title: 'Tack applications', href: '/job-seekers/applications' },
+      { title: 'Saved Jobs', href: '/job-seekers/saved-jobs' },
+      { title: 'Recommendations', href: '/job-seekers/recommedations' },
       { title: 'Browse Jobs', href: '/job-seekers/browse-jobs' },
       { title: 'Career Resources', href: '/seekers/career-resources' },
       { title: 'Resume Builder', href: '/seekers/resume-builder' },
-      {title: 'Trainings', href: '/seekers/training'}
+  
     ],
   },
 ]
