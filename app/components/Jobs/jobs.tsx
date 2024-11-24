@@ -1,8 +1,8 @@
 "use client"
 
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { MapPin, Building2, Search} from 'lucide-react'
+import { MapPin, Building2, Search } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
@@ -17,6 +17,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import Image from 'next/image'
+import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination'
 
 type Job = {
   id: number
@@ -40,13 +41,19 @@ const locations = ["San Francisco, CA", "New York, NY", "Remote", "London, UK"]
 
 const Jobs = ({ initialJobs }: JobListingsProps) => {
   const searchParams = useSearchParams()
-  const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '')
-  const [location, setLocation] = useState(searchParams.get('location') || '')
+  const [searchTerm, setSearchTerm] = useState('')
+  const [location, setLocation] = useState('')
   const [filteredJobs, setFilteredJobs] = useState<Job[]>(initialJobs)
   const [selectedJobTypes, setSelectedJobTypes] = useState<string[]>([])
   const [selectedLocations, setSelectedLocations] = useState<string[]>([])
   const [salaryRange, setSalaryRange] = useState([0, 200000])
   const [selectedJob, setSelectedJob] = useState<Job | null>(null)
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(4);
+
+  const totalPages = Math.ceil(filteredJobs.length / itemsPerPage);
+
 
   useEffect(() => {
     setSearchTerm(searchParams.get('search') || '')
@@ -70,12 +77,12 @@ const Jobs = ({ initialJobs }: JobListingsProps) => {
       const matchesJobType = selectedJobTypes.length === 0 || selectedJobTypes.includes(job.jobType)
       const matchesSelectedLocation = selectedLocations.length === 0 || selectedLocations.includes(job.location)
 
-      
+
       const matchesSalaryRange = job.salary
         ? (() => {
-            const [min, max] = job.salary.replace(/[$,]/g, '').split('-').map(Number)
-            return min >= salaryRange[0] && max <= salaryRange[1]
-          })()
+          const [min, max] = job.salary.replace(/[$,]/g, '').split('-').map(Number)
+          return min >= salaryRange[0] && max <= salaryRange[1]
+        })()
         : true
 
       return matchesSearch && matchesLocation && matchesJobType && matchesSelectedLocation && matchesSalaryRange
@@ -84,12 +91,17 @@ const Jobs = ({ initialJobs }: JobListingsProps) => {
     setFilteredJobs(updatedJobs)
   }, [searchTerm, location, initialJobs, selectedJobTypes, selectedLocations, salaryRange])
 
+  const paginatedJobs = filteredJobs.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  }
   return (
- 
- <div className="container mx-auto px-4 py-8">
+
+    <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col md:flex-row gap-8">
-       
-      <aside className="w-full md:w-1/4 border-2 border-gray-300 rounded-lg p-4 shadow-lg">
+
+        <aside className="w-full md:w-1/4 border-2 border-gray-300 rounded-lg p-4 shadow-lg">
           <div className="sticky top-4 space-y-6">
             <div>
               <h2 className="text-lg font-semibold mb-2">Filter</h2>
@@ -170,10 +182,10 @@ const Jobs = ({ initialJobs }: JobListingsProps) => {
           </div>
         </aside>
 
-       
+
         <main className="w-full md:w-3/4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredJobs.map((job) => (
+            {paginatedJobs.map((job) => (
               <Card key={job.id} className="transition-all duration-300 hover:shadow-lg">
                 <CardHeader className="flex flex-row items-center gap-4">
                   {job.image ? (
@@ -225,12 +237,37 @@ const Jobs = ({ initialJobs }: JobListingsProps) => {
                 </CardContent>
               </Card>
             ))}
+
+          </div>
+          <div>
+            <Pagination className="mt-6">
+              <PaginationContent>
+                <PaginationPrevious
+                  onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
+                  aria-disabled={currentPage === 1}
+                />
+                {Array.from({ length: totalPages }, (_, index) => (
+                  <PaginationItem key={index}>
+                    <PaginationLink
+                      isActive={currentPage === index + 1}
+                      onClick={() => handlePageChange(index + 1)}
+                    >
+                      {index + 1}
+                    </PaginationLink>
+                  </PaginationItem>
+                ))}
+                <PaginationNext
+                  onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
+                  aria-disabled={currentPage === totalPages}
+                />
+              </PaginationContent>
+            </Pagination>
           </div>
         </main>
       </div>
     </div>
 
-   
+
   )
 }
 

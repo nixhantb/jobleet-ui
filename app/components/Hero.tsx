@@ -59,9 +59,10 @@ export default function Hero({
           </div>
           
         </div>
+        
         <JobSearch/>
-       
       </div>
+    
       <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 z-0"></div>
     </section>
   )

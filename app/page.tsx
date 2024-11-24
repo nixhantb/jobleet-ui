@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import AboutUs from "./components/AboutUs";
 import NavbarLists from "./components/Navbar/NavbarLists";
 import CareerSection from "./(pages)/careers/page";
+import { JobApplicationWorkflow } from "./components/Jobs/trackApplication";
 
 
 const features = [
@@ -65,8 +66,10 @@ export default function Home() {
             />
               <AboutUs/>
              
+              <JobApplicationWorkflow/>
           
               <CareerSection/>
+             
             <Features title="Our Services" features={features} />
             
           </main>
