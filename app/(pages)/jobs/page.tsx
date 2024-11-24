@@ -48,6 +48,7 @@ const initialJobListings = [
 const JobsPage = () => {
 
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <JobLeetProvider>
       <ThemeProvider
         attribute="class"
@@ -58,10 +59,10 @@ const JobsPage = () => {
         <Layout>
           <div>
             <NavbarLists />
-            <Suspense>
+            
 
             <JobSearch/>
-            </Suspense>
+            
             <Jobs initialJobs={initialJobListings} />
             <Footer
             companyName="JobLeet"
@@ -83,7 +84,7 @@ const JobsPage = () => {
         </Layout>
       </ThemeProvider>
     </JobLeetProvider>
-
+    </Suspense>
 
 
   )
