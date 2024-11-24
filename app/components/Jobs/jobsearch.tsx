@@ -1,6 +1,6 @@
 'use client'
 
-import {useState } from 'react'
+import {Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Search, MapPin } from 'lucide-react'
 import { Button } from "@/components/ui/button"
@@ -27,7 +27,8 @@ export default function JobSearch() {
   return (
     
     <section className="py-5 md:py-10">
-    <div className="container mx-auto px-4">
+      <Suspense fallback={<div>Loading...</div>}>
+      <div className="container mx-auto px-4">
       <div className="w-full max-w-6xl mx-auto mb-8">
         <form 
           onSubmit={handleSearch} 
@@ -78,6 +79,8 @@ export default function JobSearch() {
         </form>
       </div>
     </div>
+      </Suspense>
+ 
   </section>
   
  
