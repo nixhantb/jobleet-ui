@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { Suspense } from 'react'
 import Jobs from '../../components/Jobs/jobs';
 import NavbarLists from '@/app/components/Navbar/NavbarLists';
 
@@ -58,8 +58,10 @@ const JobsPage = () => {
         <Layout>
           <div>
             <NavbarLists />
+            <Suspense>
 
             <JobSearch/>
+            </Suspense>
             <Jobs initialJobs={initialJobListings} />
             <Footer
             companyName="JobLeet"

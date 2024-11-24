@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useState } from 'react'
+import {useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Search, MapPin } from 'lucide-react'
 import { Button } from "@/components/ui/button"
@@ -24,7 +24,7 @@ export default function JobSearch() {
   
 
   return (
-    <Suspense>
+    
          <section className="py-5 md:py-10">
     <div className="container mx-auto px-4">
       <div className="w-full max-w-6xl mx-auto mb-8">
@@ -79,7 +79,7 @@ export default function JobSearch() {
       </div>
     </div>
   </section>
-    </Suspense>
+  
  
   
   )

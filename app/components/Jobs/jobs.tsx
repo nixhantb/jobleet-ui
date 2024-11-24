@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, Suspense } from 'react'
+import React, { useState, useEffect} from 'react'
 import { useSearchParams } from 'next/navigation'
 import { MapPin, Building2, Search} from 'lucide-react'
 import { Button } from "@/components/ui/button"
@@ -85,7 +85,7 @@ const Jobs = ({ initialJobs }: JobListingsProps) => {
   }, [searchTerm, location, initialJobs, selectedJobTypes, selectedLocations, salaryRange])
 
   return (
-    <Suspense>
+ 
  <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col md:flex-row gap-8">
        
@@ -229,7 +229,7 @@ const Jobs = ({ initialJobs }: JobListingsProps) => {
         </main>
       </div>
     </div>
-    </Suspense>
+
    
   )
 }
