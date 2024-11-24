@@ -56,8 +56,6 @@ export default function Home() {
         disableTransitionOnChange
       >
         <Layout>
-          
-
           <main>
             <NavbarLists/>
             <Hero
@@ -65,12 +63,9 @@ export default function Home() {
               description="JobLeet makes hiring easy and simple by connecting top talent with the right recruiters."
             
             />
+             <JobApplicationWorkflow/>
               <AboutUs/>
-             
-              <JobApplicationWorkflow/>
-          
               <CareerSection/>
-             
             <Features title="Our Services" features={features} />
             
           </main>
@@ -94,9 +89,6 @@ export default function Home() {
 
       </ThemeProvider>
     </JobLeetProvider>
-
     </Suspense>
- 
-
   );
 }
