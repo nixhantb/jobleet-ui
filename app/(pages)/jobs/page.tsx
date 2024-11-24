@@ -1,4 +1,5 @@
 "use client"
+
 import React, { Suspense } from 'react'
 import Jobs from '../../components/Jobs/jobs';
 import NavbarLists from '@/app/components/Navbar/NavbarLists';
@@ -150,14 +151,14 @@ const JobsPage = () => {
                 </div>
               </div>
 
-
               <JobSearch />
 
               <Jobs initialJobs={initialJobListings} />
-             
+
               <CareerSection />
-              
-              <JobApplicationWorkflow/>
+
+              <JobApplicationWorkflow />
+
               <Footer
                 companyName="JobLeet"
                 companyDescription="Connecting talent, empowering recruiters, and simplifying hiring."

@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { MapPin, Building2, Search } from 'lucide-react'
 import { Button } from "@/components/ui/button"
@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Checkbox } from "@/components/ui/checkbox"
 import { Slider } from "@/components/ui/slider"
+
 import {
   Sheet,
   SheetContent,
@@ -97,7 +98,7 @@ const Jobs = ({ initialJobs }: JobListingsProps) => {
     setCurrentPage(page);
   }
   return (
-         <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col md:flex-row gap-8">
 
         <aside className="w-full md:w-1/4 border-2 border-gray-300 rounded-lg p-4 shadow-lg">

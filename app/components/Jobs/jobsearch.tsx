@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 
 export default function JobSearch() {
+
   const searchParams = useSearchParams()
   const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '')
   const [location, setLocation] = useState(searchParams.get('location') || '')

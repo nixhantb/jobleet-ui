@@ -13,6 +13,7 @@ import AboutUs from "./components/AboutUs";
 import NavbarLists from "./components/Navbar/NavbarLists";
 import CareerSection from "./(pages)/careers/page";
 import { JobApplicationWorkflow } from "./components/Jobs/trackApplication";
+import { Suspense } from "react";
 
 
 const features = [
@@ -46,8 +47,8 @@ const features = [
 export default function Home() {
 
   return (
-
-    <JobLeetProvider>
+    <Suspense>
+         <JobLeetProvider>
       <ThemeProvider
         attribute="class"
         defaultTheme="system"
@@ -94,6 +95,8 @@ export default function Home() {
       </ThemeProvider>
     </JobLeetProvider>
 
+    </Suspense>
+ 
 
   );
 }
