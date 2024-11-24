@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
-import { MapPin, Building2, BookmarkPlus, ChevronRight, Search, Filter } from 'lucide-react'
+import { MapPin, Building2, Search} from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
