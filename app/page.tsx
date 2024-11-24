@@ -1,57 +1,19 @@
 
 'use client'
-import { Button } from "@/components/ui/button";
-import Navbar from "./components/Navbar";
-import { NavbarItems } from "./components/Navbar";
+
 import { JobLeetProvider } from "@/lib/Jobleetcontext";
 import { ThemeProvider } from 'next-themes'
 import Layout from "./components/Layout";
 import Hero from "./components/Hero";
-import { UserCheck, BarChart, GitBranch,Puzzle, UserPlus, Facebook, Twitter, Linkedin, Instagram  } from "lucide-react";
+import { UserCheck, BarChart, GitBranch, Puzzle, UserPlus, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
 import Features from "./components/Features";
 import Footer from "./components/Footer";
-import About from "./components/About";
-import JobListings from "./components/JobListings";
 
-const navItems: NavbarItems[] = [
-  { title: 'Home', href: '/' },
-  {
-    title: 'Companies',
-    href: '/companies',
-    dropdownItems: [
-      { title: 'Candidates Matching', href: '/companies/candidates-matching' },
-      { title: 'CRM Tools', href: '/companies/crm-tools' },
-      { title: 'Events', href: '/companies/events' },
-      { title: 'Job Fairs', href: '/companies/fairs' },
-      { title: 'Trainings', href: '/companies/trainings' },
-      
-    ],
-  },
-  {
-    title: 'Employers',
-    href: '/employers',
-    dropdownItems: [
-      { title: 'Post a Job', href: '/employers/post-job' },
-      { title: 'Tack applications', href: '/employers/applications' },
-      { title: 'Schedule Interview', href: '/job-seekers/interviews' },
-      { title: 'Talent Pool', href: '/employers/talent-pool' },
-      { title: 'Hiring Solutions', href: '/employers/hiring-solutions' },
-    ],
-  },
-  {
-    title: 'Job Seekers',
-    href: '/job-seekers',
-    dropdownItems: [
-      { title: 'Tack applications', href: '/job-seekers/applications' },
-      { title: 'Saved Jobs', href: '/job-seekers/saved-jobs' },
-      { title: 'Recommendations', href: '/job-seekers/recommedations' },
-      { title: 'Browse Jobs', href: '/job-seekers/browse-jobs' },
-      { title: 'Career Resources', href: '/seekers/career-resources' },
-      { title: 'Resume Builder', href: '/seekers/resume-builder' },
-  
-    ],
-  },
-]
+import AboutUs from "./components/AboutUs";
+import NavbarLists from "./components/Navbar/NavbarLists";
+import CareerSection from "./(pages)/careers/page";
+
+
 const features = [
   {
     title: 'Efficient Talent Acquisition',
@@ -79,44 +41,9 @@ const features = [
     icon: GitBranch,
   },
 ]
-const initialJobListings = [
-  {
-    id: 1,
-    companyName: 'TechCorp',
-    location: 'San Francisco, CA',
-    jobTitle: 'Senior Software Engineer',
-    jobDescription: 'We are seeking a talented Senior Software Engineer to join our innovative team, working on cutting-edge technology solutions.',
-    postedTime: '3 days ago',
-    jobType: 'Full-time',
-    image: '',
-    keySkills: ['JavaScript', 'TypeScript', 'React', 'Node.js', 'AWS'],
-  },
-  {
-    id: 2,
-    companyName: 'GrowthCo',
-    location: 'New York, NY',
-    jobTitle: 'Marketing Manager',
-    jobDescription: 'GrowthCo is looking for an experienced Marketing Manager to lead our marketing efforts and drive growth through strategic campaigns.',
-    postedTime: '1 week ago',
-    jobType: 'Full-time',
-    image: '',
-    keySkills: ['Marketing Strategy', 'SEO', 'Content Marketing', 'Data Analysis'],
-  },
-  {
-    id: 3,
-    companyName: 'DesignHub',
-    location: 'Remote',
-    jobTitle: 'UX Designer',
-    jobDescription: 'Join our team of creative UX Designers and help shape the future of digital experiences with a user-centered approach.',
-    postedTime: '5 days ago',
-    jobType: 'Contract',
-    image: '',
-    keySkills: ['Figma', 'Sketch', 'Prototyping', 'User Research', 'UI Design'],
-  }
-];
 
 export default function Home() {
- 
+
   return (
 
     <JobLeetProvider>
@@ -127,30 +54,21 @@ export default function Home() {
         disableTransitionOnChange
       >
         <Layout>
-          <Navbar
+          
 
-            logo={<span className="text-2xl font-bold">JobLeet</span>}
-            navItems={navItems}
-            rightItems={
-              <>
-                <Button variant="ghost">Login</Button>
-                <Button>Register</Button>
-              </>
-            }
-
-          ></Navbar>
-         
           <main>
+            <NavbarLists/>
             <Hero
               title="Connecting Talent, Boosting Recruitment"
               description="JobLeet makes hiring easy and simple by connecting top talent with the right recruiters."
-              primaryCTA={{ text: "Get Started", href: "/signup" }}
-              secondaryCTA={{ text: "Learn More", href: "/about" }}
+            
             />
-             <JobListings initialJobs={initialJobListings}/>
-             <About/>
+              <AboutUs/>
+             
+          
+              <CareerSection/>
             <Features title="Our Services" features={features} />
-           
+            
           </main>
           <Footer
             companyName="JobLeet"

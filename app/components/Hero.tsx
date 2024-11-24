@@ -1,21 +1,14 @@
 'use client'
-
-import { Button } from "@/components/ui/button"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { Card, CardContent } from "@/components/ui/card"
 import { BriefcaseIcon, ChartBarIcon, GlobeIcon, LightbulbIcon, UserIcon,RocketIcon } from "lucide-react"
+import JobSearch from "./Jobs/jobsearch"
+
 
 interface HeroProps {
   title: string
   description: string
-  primaryCTA: {
-    text: string
-    href: string
-  }
-  secondaryCTA: {
-    text: string
-    href: string
-  }
+
 }
 // Dummy data : Later it will be updated with real data
 const carouselItems = [
@@ -30,8 +23,6 @@ const carouselItems = [
 export default function Hero({
   title,
   description,
-  primaryCTA,
-  secondaryCTA
 }: HeroProps) {
   return (
     <section className="relative py-20 w-auto overflow-hidden">
@@ -44,14 +35,7 @@ export default function Hero({
             <p className="text-xl mb-8 text-muted-foreground">
               {description}
             </p>
-            <div className="flex space-x-4">
-              <Button size="lg" asChild>
-                <a href={primaryCTA.href}>{primaryCTA.text}</a>
-              </Button>
-              <Button size="lg" variant="outline" asChild>
-                <a href={secondaryCTA.href}>{secondaryCTA.text}</a>
-              </Button>
-            </div>
+            
           </div>
           <div className="lg:w-1/2 w-full max-w-md mx-auto">
             <Carousel className="w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
@@ -71,8 +55,12 @@ export default function Hero({
               <CarouselPrevious className="absolute left-0 top-1/2 -translate-y-1/2" />
               <CarouselNext className="absolute right-0 top-1/2 -translate-y-1/2" />
             </Carousel>
+            
           </div>
+          
         </div>
+        <JobSearch/>
+       
       </div>
       <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 z-0"></div>
     </section>
