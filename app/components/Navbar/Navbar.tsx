@@ -68,10 +68,12 @@ export default function Navbar({
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
+        <div className="flex-shrink-0">{logo}</div>
           <div className="flex items-center">
-            <div className="flex-shrink-0">{logo}</div>
+           
             <Button
               variant="ghost"
               size="icon"
@@ -79,14 +81,20 @@ export default function Navbar({
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              
             </Button>
+            
           </div>
+
+          
           <div className="hidden md:flex md:items-center md:space-x-1">
             {navItems.map((item) => (
               <NavLink key={item.title} item={item} />
             ))}
           </div>
-          <div className="flex items-center space-x-4">
+
+        
+          <div className="hidden md:flex md:items-center md:space-x-4">
             {rightItems}
             {showThemeToggle && (
               <Button
@@ -103,12 +111,32 @@ export default function Navbar({
           </div>
         </div>
       </div>
+
+     
       {isOpen && (
         <div className="border-t md:hidden">
           <div className="container mx-auto space-y-1 px-4 pb-4 pt-2">
+           
             {navItems.map((item) => (
               <NavLink key={item.title} item={item} />
             ))}
+            
+             {rightItems}
+             {showThemeToggle && (
+              <div className="flex items-center justify-between">
+                
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="h-10 w-10"
+                >
+                  <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       )}

@@ -181,8 +181,6 @@ const Jobs = ({ initialJobs }: JobListingsProps) => {
             </div>
           </div>
         </aside>
-
-
         <main className="w-full md:w-3/4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {paginatedJobs.map((job) => (

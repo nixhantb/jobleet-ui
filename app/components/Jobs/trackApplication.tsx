@@ -36,7 +36,7 @@ export function JobApplicationWorkflow() {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null)
 
   return (
-    <div className="w-full mx-auto p-6 rounded-xl shadow-2xl">
+    <div className="w-full py-20 mx-auto p-6 rounded-xl shadow-2xl">
         <div className="flex items-center justify-center min-h-[20vh]">
                 <div className="text-center">
                 <h2 className="text-2xl md:text-4xl font-semibold mb-1">Streamlined Hiring Process</h2> <p className="text-sm md:text-base text-gray-600">Take the first step toward your dream career with just a single click.</p>

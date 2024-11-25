@@ -45,7 +45,6 @@ export function CareerCard({ category, title, imageUrl, href, categoryColor = 'd
       </Card>
     </Link>
    
-
   )
 }
 

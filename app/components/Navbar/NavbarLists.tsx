@@ -14,8 +14,7 @@ const navItems: NavbarItems[] = [
         title: 'Companies',
         href: '/companies',
         dropdownItems: [
-            { title: 'Candidates Matching', href: '/companies/candidates-matching' },
-            { title: 'CRM Tools', href: '/companies/crm-tools' },
+            { title: 'Consulting', href: '/companies/consulting' },
             { title: 'Events', href: '/companies/events' },
             { title: 'Job Fairs', href: '/companies/fairs' },
             { title: 'Trainings', href: '/companies/trainings' },
@@ -28,19 +27,17 @@ const navItems: NavbarItems[] = [
         dropdownItems: [
             { title: 'Post a Job', href: '/employers/post-job' },
             { title: 'Tack applications', href: '/employers/applications' },
-            { title: 'Schedule Interview', href: '/job-seekers/interviews' },
             { title: 'Talent Pool', href: '/employers/talent-pool' },
-            { title: 'Hiring Solutions', href: '/employers/hiring-solutions' },
+            { title: 'Hackathons', href: '/employers/hackathons' },
         ],
     },
     {
         title: 'Job Seekers',
         href: '/job-seekers',
         dropdownItems: [
-            { title: 'Tack applications', href: '/job-seekers/applications' },
             { title: 'Saved Jobs', href: '/job-seekers/saved-jobs' },
             { title: 'Recommendations', href: '/job-seekers/recommedations' },
-            { title: 'Browse Jobs', href: '/job-seekers/browse-jobs' },
+            { title: 'Browse Jobs', href: '/jobs' },
             { title: 'Career Resources', href: '/seekers/career-resources' },
             { title: 'Resume Builder', href: '/seekers/resume-builder' },
 
@@ -54,7 +51,7 @@ const NavbarLists = () => {
         <div>
             <Navbar
 
-                logo={<span className="text-2xl font-bold">JobLeet</span>}
+                logo={<span className="text-xl font-bold md:text-2xl">JobLeet</span>}
                 navItems={navItems}
                 rightItems={
                     <>
