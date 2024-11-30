@@ -51,7 +51,7 @@ const NavbarLists = () => {
     const router = useRouter();
 
     return (
-        <div>
+       
             <Navbar
                 navItems={navItems}
                 rightItems={
@@ -62,7 +62,7 @@ const NavbarLists = () => {
                 }
 
             ></Navbar>
-        </div>
+       
     )
 }
 
