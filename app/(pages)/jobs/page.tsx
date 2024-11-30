@@ -12,7 +12,7 @@ import JobSearch from '@/app/components/Jobs/jobsearch';
 import Footer from '@/app/components/Footer/Footer';
 import CareerSection from '../careers/page';
 import { JobApplicationWorkflow } from '@/app/components/Jobs/trackApplication';
-
+import { motion } from 'framer-motion';
 const initialJobListings = [
   {
     id: 1,
@@ -141,15 +141,24 @@ const JobsPage = () => {
             <div>
               <NavbarLists />
 
-              <div className="flex items-center justify-center min-h-[20vh]">
-                <div className="text-center">
-                  <h2 className="text-2xl md:text-4xl font-semibold mb-1">Find Your Dream Job Today!</h2>
-                  <p className="text-sm md:text-base text-gray-600">
-                    Explore thousands of opportunities to start your next career journey.
-                  </p>
-                </div>
+              <div className="text-center mt-10 max-w-2xl mx-auto mb-8 md:mb-12">
+                <motion.h1
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  Find Your Dream Job
+                </motion.h1>
+                <motion.p
+                  className="text-muted-foreground text-lg"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                >
+                  Search through millions of jobs and find the right fit for you
+                </motion.p>
               </div>
-
               <JobSearch />
 
               <Jobs initialJobs={initialJobListings} />
@@ -158,7 +167,7 @@ const JobsPage = () => {
 
               <JobApplicationWorkflow />
 
-              <Footer/>
+              <Footer />
             </div>
           </Layout>
         </ThemeProvider>

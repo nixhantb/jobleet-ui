@@ -1,71 +1,108 @@
 "use client";
 
-import { useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { Search, MapPin } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Search, MapPin, Briefcase } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { motion } from 'framer-motion';
 
 export default function JobSearch() {
-  const searchParams = useSearchParams()
-  const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '')
-  const [location, setLocation] = useState(searchParams.get('location') || '')
-  const router = useRouter()
+  const searchParams = useSearchParams();
+  const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
+  const [location, setLocation] = useState(searchParams.get('location') || '');
+  const router = useRouter();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const queryParams = new URLSearchParams();
     if (searchTerm) queryParams.append('search', searchTerm);
     if (location) queryParams.append('location', location);
-  
+
     router.push(`/jobs?${queryParams.toString()}`);
   };
 
   return (
-    <section className="py-6 sm:py-8 md:py-10">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <form 
-          onSubmit={handleSearch} 
-          className="flex flex-col sm:flex-row items-center gap-3 max-w-3xl mx-auto"
-        >
-          <div className="relative flex-grow w-full">
-            <Search 
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" 
-              size={18} 
-            />
-            <Input
-              type="text"
-              placeholder="Job title or keyword"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 h-16 text-sm sm:text-base w-full"
-            />
-          </div>
+    <section className="relative py-12 md:py-16 lg:py-20 overflow-hidden">
 
-          <div className="relative flex-grow w-full">
-            <MapPin 
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" 
-              size={18} 
-            />
-            <Input
-              type="text"
-              placeholder="Location"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              className="pl-10 h-16 text-sm sm:text-base w-full"
-            />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10" />
+
+      <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
+
+        
+
+        <motion.form
+          onSubmit={handleSearch}
+          className="max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <div className="bg-card shadow-lg rounded-xl p-2 md:p-3 flex flex-col md:flex-row gap-3">
+
+            <div className="relative flex-1">
+              <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                <Briefcase className="h-5 w-5" />
+              </div>
+              <Input
+                type="text"
+                placeholder="Job title or keyword"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-11 h-12 md:h-14 text-base bg-background border-0 transition-colors"
+              />
+            </div>
+
+
+            <div className="relative flex-1">
+              <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                <MapPin className="h-5 w-5" />
+              </div>
+              <Input
+                type="text"
+                placeholder="Location"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                className="pl-11 h-12 md:h-14 text-base bg-background border-0 transition-colors"
+              />
+            </div>
+
+
+            <Button
+              type="submit"
+              size="lg"
+              className="h-12 md:h-14 px-8 text-base font-semibold"
+            >
+              <Search className="h-5 w-5 mr-2" />
+              Search Jobs
+            </Button>
           </div>
-  
-          <Button 
-            type="submit" 
-            className="h-14 px-6 w-full sm:w-auto"
-          >
-            Search
-          </Button>
-        </form>
+        </motion.form>
+
+
+        <motion.div
+          className="mt-6 text-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <p className="text-sm text-muted-foreground mb-2">Popular Searches:</p>
+          <div className="flex flex-wrap justify-center gap-2">
+            {['Remote', 'Full-Time', 'Software Engineer', 'Marketing', 'Design'].map((term) => (
+              <Button
+                key={term}
+                variant="outline"
+                size="sm"
+                className="rounded-full"
+                onClick={() => setSearchTerm(term)}
+              >
+                {term}
+              </Button>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
-  )
+  );
 }
-
