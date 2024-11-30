@@ -3,6 +3,8 @@
 import React from 'react'
 import { Button } from "@/components/ui/button";
 import Navbar from './Navbar';
+import { useRouter } from 'next/navigation';
+
 export interface NavbarItems {
     title: string
     href: string
@@ -46,17 +48,16 @@ const navItems: NavbarItems[] = [
 ]
 const NavbarLists = () => {
 
+    const router = useRouter();
 
     return (
         <div>
             <Navbar
-
-                logo={<span className="text-xl font-bold md:text-2xl">JobLeet</span>}
                 navItems={navItems}
                 rightItems={
                     <>
-                        <Button variant="ghost">Login</Button>
-                        <Button>Register</Button>
+                        <Button  onClick={()=> router.push('/login')} variant="ghost">Login</Button>
+                        <Button onClick={()=> router.push('/register')}>Register</Button>
                     </>
                 }
 

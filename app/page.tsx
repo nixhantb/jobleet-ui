@@ -5,9 +5,9 @@ import { JobLeetProvider } from "@/lib/Jobleetcontext";
 import { ThemeProvider } from 'next-themes'
 import Layout from "./components/Layout";
 import Hero from "./components/Hero";
-import { UserCheck, BarChart, GitBranch, Puzzle, UserPlus, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import { UserCheck, BarChart, GitBranch, Puzzle, UserPlus} from "lucide-react";
 import Features from "./components/Features";
-import Footer from "./components/Footer";
+import Footer from "./components/Footer/Footer"
 
 import AboutUs from "./components/AboutUs";
 import NavbarLists from "./components/Navbar/NavbarLists";
@@ -69,22 +69,7 @@ export default function Home() {
             <Features title="Our Services" features={features} />
             
           </main>
-          <Footer
-            companyName="JobLeet"
-            companyDescription="Connecting talent, empowering recruiters, and simplifying hiring."
-            quickLinks={[
-              { title: "About Us", href: "/about" },
-              { title: "Privacy Policy", href: "/privacy" },
-              { title: "Terms of Service", href: "/terms" },
-              { title: "Contact Us", href: "/contact" },
-            ]}
-            socialLinks={[
-              { icon: Facebook, href: "#" },
-              { icon: Twitter, href: "#" },
-              { icon: Linkedin, href: "#" },
-              { icon: Instagram, href: "#" },
-            ]}
-          />
+          <Footer/>
         </Layout>
 
       </ThemeProvider>

@@ -23,7 +23,7 @@ interface FooterProps {
 
 }
 
-export default function Footer({ companyName, companyDescription, quickLinks, socialLinks }: FooterProps) {
+export default function FooterList({ companyName, companyDescription, quickLinks, socialLinks }: FooterProps) {
     return (
 
         <footer className="bg-muted py-12">

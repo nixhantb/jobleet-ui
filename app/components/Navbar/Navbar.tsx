@@ -11,6 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
+import Logo from "@/components/auth/Logo"
 
 export interface NavbarItems {
   title: string
@@ -18,14 +19,12 @@ export interface NavbarItems {
   dropdownItems?: { title: string; href: string }[]
 }
 export interface NavbarProps {
-  logo: React.ReactNode
   navItems: NavbarItems[]
   rightItems?: React.ReactNode
   showThemeToggle?: boolean
 }
 
 export default function Navbar({
-  logo,
   navItems,
   rightItems,
   showThemeToggle = true
@@ -71,7 +70,7 @@ export default function Navbar({
 
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-        <div className="flex-shrink-0">{logo}</div>
+          <Logo/>
           <div className="flex items-center">
            
             <Button

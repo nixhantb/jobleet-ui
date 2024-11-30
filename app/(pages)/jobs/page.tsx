@@ -9,8 +9,7 @@ import { JobLeetProvider } from '@/lib/Jobleetcontext';
 
 import { ThemeProvider } from 'next-themes'
 import JobSearch from '@/app/components/Jobs/jobsearch';
-import Footer from '@/app/components/Footer';
-import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import Footer from '@/app/components/Footer/Footer';
 import CareerSection from '../careers/page';
 import { JobApplicationWorkflow } from '@/app/components/Jobs/trackApplication';
 
@@ -159,23 +158,7 @@ const JobsPage = () => {
 
               <JobApplicationWorkflow />
 
-              <Footer
-                companyName="JobLeet"
-                companyDescription="Connecting talent, empowering recruiters, and simplifying hiring."
-                quickLinks={[
-                  { title: "About Us", href: "/about" },
-                  { title: "Privacy Policy", href: "/privacy" },
-                  { title: "Terms of Service", href: "/terms" },
-                  { title: "Contact Us", href: "/contact" },
-                ]}
-                socialLinks={[
-                  { icon: Facebook, href: "#" },
-                  { icon: Twitter, href: "#" },
-                  { icon: Linkedin, href: "#" },
-                  { icon: Instagram, href: "#" },
-                ]}
-              />
-
+              <Footer/>
             </div>
           </Layout>
         </ThemeProvider>
