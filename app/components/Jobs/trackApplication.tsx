@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Briefcase, Upload, Mic, ClipboardList, ChevronRight, Goal } from 'lucide-react'
+import { Briefcase, Upload, Mic, ClipboardList, Goal } from 'lucide-react'
 import { Card, CardContent } from "@/components/ui/card"
 
 const steps = [
