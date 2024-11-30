@@ -29,10 +29,10 @@ export default function LoginPage() {
         className="w-full max-w-[400px] mx-auto"
       >
         <div className="text-center mb-8">
-        
+
           <h1 className="text-2xl font-bold mb-2">Welcome back</h1>
           <p className="text-muted-foreground">Sign in to your Jobleet account</p>
-         
+
         </div>
 
         <Button variant="outline" className="w-full mb-6">
@@ -62,11 +62,11 @@ export default function LoginPage() {
               className="w-full"
             />
           </div>
-          
+
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <Label htmlFor="password">Password</Label>
-              <Link 
+              <Link
                 href="/auth/forgot-password"
                 className="text-sm text-primary hover:underline"
               >
@@ -92,14 +92,15 @@ export default function LoginPage() {
         </form>
 
         <p className="text-center mt-6 text-sm text-muted-foreground">
-          Don't have an account?{' '}
-          <Link 
-            href="/register" 
+          {`Don't have an account?`}{' '}
+          <Link
+            href="/register"
             className="text-primary hover:underline"
           >
             Create an account
           </Link>
         </p>
+
       </motion.div>
     </AuthLayout>
   )
