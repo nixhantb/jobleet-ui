@@ -77,7 +77,7 @@ function AboutUsCard({ title, description, imgSrc, altText, buttonText, icon: Ic
 
 export default function AboutUs() {
   return (
-    <section className="bg-muted py-20">
+    <section className="py-20 bg-muted mt-20">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">Fast, Simple, and Effective Hiring Solutions</h2>
         <div className="grid md:grid-cols-3 gap-6">

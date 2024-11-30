@@ -37,10 +37,10 @@ export function JobApplicationWorkflow() {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null)
 
   return (
-    <div className="w-full py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-10 mx-auto">
+    <div className="w-full py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-10 mx-auto bg-muted">
       <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-2 sm:mb-3 md:mb-4">Streamlined Hiring Process</h2>
-        <p className="text-sm sm:text-base md:text-lg text-gray-600">Take the first step toward your dream career with just a single click.</p>
+        <p className="text-sm sm:text-base md:text-lg text-gray-400">Take the first step toward your dream career with just a single click.</p>
       </div>
       <div className="flex flex-col flex-wrap sm:flex-row justify-between relative gap-4 sm:gap-8">
         {steps.map((step, index) => (
@@ -51,7 +51,7 @@ export function JobApplicationWorkflow() {
               onHoverStart={() => setHoveredStep(index)}
               onHoverEnd={() => setHoveredStep(null)}
             >
-              <Card className="relative bg-slate-50 border-0 h-full">
+              <Card className="relative  border-0 h-full">
                 <CardContent className="p-6 sm:p-8 md:p-10 lg:p-12">
                   <div className={`absolute -top-4 sm:-top-5 left-1/2 transform -translate-x-1/2 rounded-full p-3 ${hoveredStep === index ? 'bg-blue-500' : 'bg-gray-700'} transition-colors duration-300`}>
                     <step.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
