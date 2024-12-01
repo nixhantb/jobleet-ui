@@ -94,7 +94,7 @@ export default function JobSearch() {
                 key={term}
                 variant="outline"
                 size="sm"
-                className="rounded-full"
+                className="rounded-full text-muted-foreground"
                 onClick={() => setSearchTerm(term)}
               >
                 {term}
