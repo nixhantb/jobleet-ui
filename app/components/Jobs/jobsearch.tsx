@@ -26,7 +26,7 @@ export default function JobSearch() {
   return (
     <section className="relative py-12 md:py-16 lg:py-20 overflow-hidden">
 
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10" />
+      {/* <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10" /> */}
 
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
 

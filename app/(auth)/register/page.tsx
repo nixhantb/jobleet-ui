@@ -95,6 +95,16 @@ export default function RegisterPage() {
               className="w-full"
             />
           </div>
+          <div className="space-y-2">
+            <Label htmlFor="confirmpassword">Confirm password</Label>
+            <Input
+              id="confirmpassword"
+              type="password"
+              placeholder='••••••••'
+              required
+              className="w-full"
+            />
+          </div>
 
           <Button
             type="submit"
