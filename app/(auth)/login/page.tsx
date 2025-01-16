@@ -9,18 +9,69 @@ import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import { Github } from 'lucide-react'
 import AuthLayout from '@/components/auth/AuthLayout'
+import { useRouter } from 'next/navigation'
+import axios from 'axios'
+import { AuthProvider, useAuth } from '@/context/AuthContext'
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
 
+  const [formData, setFormData] = useState({
+
+    emailAddress:'',
+    password: ''
+  })
+
+  const router = useRouter();
+  const { setUser } = useAuth();
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+
+    const {id, value} = event.target;
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [id]: value
+    }))
+  }
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setIsLoading(true)
-    // Add your login logic here
-    setTimeout(() => setIsLoading(false), 2000)
+   
+    const payload = {
+
+      emailAddress: formData.emailAddress,
+      password: formData.password
+    }
+
+    try{
+
+      const response = await axios.post('http://localhost:5184/api/v1/logins', payload)
+      
+      if(response.status === 200){
+        const {token} = response.data;
+        localStorage.setItem("token", token);
+        setUser(response.data);
+        setUserLoggedIn(true);
+        router.push('/dashboard');
+        
+      }
+
+      
+    }
+    catch(error: any){
+      console.error('Error:', error.response?.data || error.message)
+
+    }
+    finally {
+      setIsLoading(false)
+    }
   }
 
   return (
+   
     <AuthLayout>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -55,11 +106,13 @@ export default function LoginPage() {
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
-              id="email"
-              type="email"
+              id="emailAddress"
+              type="emailAddress"
               placeholder="john.doe@example.com"
               required
               className="w-full"
+              value={formData.emailAddress}
+              onChange={handleChange}
             />
           </div>
 
@@ -79,6 +132,8 @@ export default function LoginPage() {
               placeholder='••••••••'
               required
               className="w-full"
+              value={formData.password}
+              onChange={handleChange}
             />
           </div>
 
@@ -103,5 +158,7 @@ export default function LoginPage() {
 
       </motion.div>
     </AuthLayout>
+  
+
   )
 }

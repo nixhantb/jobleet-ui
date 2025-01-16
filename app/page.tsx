@@ -67,7 +67,8 @@ export default function Home() {
               <AboutUs/>
               <CareerSection/>
             <Features title="Our Services" features={features} />
-            
+         
+           
           </main>
           <Footer/>
         </Layout>
