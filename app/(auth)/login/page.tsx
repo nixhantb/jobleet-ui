@@ -42,11 +42,16 @@ export default function LoginPage() {
     }
 
     try {
-      const response = await axios.post('http://localhost:5184/api/v1/logins', payload)
+      const response = await axios.post('http://localhost:5184/api/v1/logins', payload);
       
       if (response.status === 200) {
         const { token } = response.data;
-        localStorage.setItem("token", token);
+
+        // Check if window is available (browser-side code)
+        if (typeof window !== "undefined") {
+          localStorage.setItem("token", token);
+        }
+        
         setUser(response.data);
         router.push('/dashboard');
       }
@@ -57,7 +62,7 @@ export default function LoginPage() {
         console.error('Unexpected Error:', error);
       }
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   }
 
