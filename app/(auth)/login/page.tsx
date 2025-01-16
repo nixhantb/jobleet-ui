@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
@@ -15,6 +15,7 @@ import { useAuth } from '@/context/AuthContext'
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   const [formData, setFormData] = useState({
     emailAddress: '',
@@ -23,6 +24,11 @@ export default function LoginPage() {
 
   const router = useRouter();
   const { setUser } = useAuth();
+
+  // Add useEffect to handle mounting state
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = event.target;
@@ -47,8 +53,8 @@ export default function LoginPage() {
       if (response.status === 200) {
         const { token } = response.data;
 
-        // Check if window is available (browser-side code)
-        if (typeof window !== "undefined") {
+        // Only access localStorage after component is mounted and in browser environment
+        if (isMounted) {
           localStorage.setItem("token", token);
         }
         
@@ -66,6 +72,11 @@ export default function LoginPage() {
     }
   }
 
+  
+  if (!isMounted) {
+    return null; 
+  }
+
   return (
     <AuthLayout>
       <motion.div
@@ -74,6 +85,7 @@ export default function LoginPage() {
         transition={{ duration: 0.5 }}
         className="w-full max-w-[400px] mx-auto"
       >
+        
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold mb-2">Welcome back</h1>
           <p className="text-muted-foreground">Sign in to your Jobleet account</p>
