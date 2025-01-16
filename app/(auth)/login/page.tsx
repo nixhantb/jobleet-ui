@@ -53,7 +53,7 @@ export default function LoginPage() {
       if (response.status === 200) {
         const { token } = response.data;
 
-        // Only access localStorage after component is mounted and in browser environment
+       
         if (isMounted) {
           localStorage.setItem("token", token);
         }
