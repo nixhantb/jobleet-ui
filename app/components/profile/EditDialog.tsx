@@ -21,14 +21,14 @@ interface EditDialogProps {
 }
 
 export function EditDialog({ section, title }: EditDialogProps) {
-  
+
   const [open, setOpen] = useState(false);
   const { profile, updateProfile } = useProfile();
-  const { register, handleSubmit} = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = (data: any) => {
     const updateData: any = {};
-    
+
     switch (section) {
       case 'basic':
         updateData.profileSummary = data.profileSummary;
@@ -96,13 +96,13 @@ export function EditDialog({ section, title }: EditDialogProps) {
                 defaultValue={new Date(profile.dateOfBirth).toISOString().split('T')[0]}
               />
               <Input
-       
+
                 {...register("experienceLevel")}
                 className="input"
-      />
+              />
             </>
           )}
-          
+
           {section === 'contact' && (
             <>
               <Input

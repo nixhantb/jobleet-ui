@@ -2,7 +2,6 @@
 "use client";
 import React from 'react'
 import Navbar from '../Navbar/Navbar';
-import { useRouter } from 'next/navigation';
 
 import HelpMenu from './HelpMenu';
 import NotificationsMenu from './NotificationMenu';

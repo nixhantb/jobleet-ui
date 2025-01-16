@@ -9,7 +9,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { HelpCircle, Book, MessageCircle, FileText } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 
 export default function HelpMenu() {
   
