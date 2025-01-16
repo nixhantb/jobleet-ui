@@ -11,25 +11,21 @@ import { Github } from 'lucide-react'
 import AuthLayout from '@/components/auth/AuthLayout'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
-import { AuthProvider, useAuth } from '@/context/AuthContext'
+import { useAuth } from '@/context/AuthContext'
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
 
   const [formData, setFormData] = useState({
-
-    emailAddress:'',
+    emailAddress: '',
     password: ''
   })
 
   const router = useRouter();
   const { setUser } = useAuth();
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-
-    const {id, value} = event.target;
-
+    const { id, value } = event.target;
     setFormData((prevData) => ({
       ...prevData,
       [id]: value
@@ -41,37 +37,31 @@ export default function LoginPage() {
     setIsLoading(true)
    
     const payload = {
-
       emailAddress: formData.emailAddress,
       password: formData.password
     }
 
-    try{
-
+    try {
       const response = await axios.post('http://localhost:5184/api/v1/logins', payload)
       
-      if(response.status === 200){
-        const {token} = response.data;
+      if (response.status === 200) {
+        const { token } = response.data;
         localStorage.setItem("token", token);
         setUser(response.data);
-        setUserLoggedIn(true);
         router.push('/dashboard');
-        
       }
-
-      
-    }
-    catch(error: any){
-      console.error('Error:', error.response?.data || error.message)
-
-    }
-    finally {
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        console.error('Error:', error.response?.data || error.message);
+      } else {
+        console.error('Unexpected Error:', error);
+      }
+    } finally {
       setIsLoading(false)
     }
   }
 
   return (
-   
     <AuthLayout>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -80,10 +70,8 @@ export default function LoginPage() {
         className="w-full max-w-[400px] mx-auto"
       >
         <div className="text-center mb-8">
-
           <h1 className="text-2xl font-bold mb-2">Welcome back</h1>
           <p className="text-muted-foreground">Sign in to your Jobleet account</p>
-
         </div>
 
         <Button variant="outline" className="w-full mb-6">
@@ -107,7 +95,7 @@ export default function LoginPage() {
             <Label htmlFor="email">Email</Label>
             <Input
               id="emailAddress"
-              type="emailAddress"
+              type="email"
               placeholder="john.doe@example.com"
               required
               className="w-full"
@@ -155,10 +143,7 @@ export default function LoginPage() {
             Create an account
           </Link>
         </p>
-
       </motion.div>
     </AuthLayout>
-  
-
   )
 }

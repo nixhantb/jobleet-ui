@@ -24,7 +24,7 @@ export function EditDialog({ section, title }: EditDialogProps) {
   
   const [open, setOpen] = useState(false);
   const { profile, updateProfile } = useProfile();
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit} = useForm();
 
   const onSubmit = (data: any) => {
     const updateData: any = {};

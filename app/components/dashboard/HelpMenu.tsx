@@ -12,7 +12,7 @@ import { HelpCircle, Book, MessageCircle, FileText } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export default function HelpMenu() {
-  const router = useRouter();
+  
 
   return (
     <DropdownMenu>

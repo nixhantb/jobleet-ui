@@ -9,7 +9,7 @@ import { useAuth } from "@/context/AuthContext";
 
 export function ProfileHeader() {
   const { profile } = useProfile();
-const { user, logout } = useAuth();
+const { user} = useAuth();
 
   return (
     <Card className="border-none shadow-none">

@@ -11,7 +11,6 @@ import ProfileMenu from './ProfileMenu';
 
 const Header = () => {
 
-    const router = useRouter();
 
     return (
 

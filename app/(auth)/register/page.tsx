@@ -59,10 +59,12 @@ export default function RegisterPage() {
      
       router.push('/login')
     } 
-    catch (error: any) {
-      console.error('Error:', error.response?.data || error.message)
-    } finally {
-      setIsLoading(false)
+    catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        console.error('Error:', error.response?.data || error.message);
+      } else {
+        console.error('Unexpected Error:', error);
+      }
     }
   }
 
