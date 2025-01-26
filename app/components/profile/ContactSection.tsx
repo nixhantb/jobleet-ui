@@ -11,7 +11,7 @@ export function ContactSection() {
   const { user } = useAuth();
 
   return (
-    
+
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle>Contact Information</CardTitle>
@@ -24,20 +24,23 @@ export function ContactSection() {
         </div>
         <div className="flex items-center gap-3">
           <Mail className="w-4 h-4 text-muted-foreground" />
-          <span>{user?.emailAddress || ''}</span>
+          <span>{profile?.experience?.companyModel?.profile?.contactEmail?.emailAddress || ''}</span>
         </div>
-        <div className="flex items-center gap-3">
-          <Linkedin className="w-4 h-4 text-muted-foreground" />
-          <a href={profile.linkedInProfile} className="text-primary hover:underline">
-            LinkedIn Profile
-          </a>
+        <div>
+          {profile.socialMedias.map((social) => (
+            <div key={social.id} className="flex items-center gap-3">
+              {social.title === "LinkedIn" ? (
+                <Linkedin className="w-4 h-4 text-muted-foreground" />
+              ) : social.title === "GitHub" ? (
+                <Github className="w-4 h-4 text-muted-foreground" />
+              ) : null}
+              <a href={social.url} className="text-primary hover:underline">
+                {social.title} Profile
+              </a>
+            </div>
+          ))}
         </div>
-        <div className="flex items-center gap-3">
-          <Github className="w-4 h-4 text-muted-foreground" />
-          <a href={profile.portfolio} className="text-primary hover:underline">
-            Portfolio
-          </a>
-        </div>
+
       </CardContent>
     </Card>
   );

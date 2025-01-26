@@ -29,6 +29,16 @@ export function EducationSection() {
               <span className="text-sm font-medium">CGPA: {profile.education.cgpa}</span>
             </div>
           </div>
+
+          
+          <div>
+          
+            <ul className="list-disc list-inside text-sm text-muted-foreground">
+              {profile.qualifications.qualificationInformation.map((qualification, index) => (
+                <li key={index}>{qualification}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </CardContent>
     </Card>
