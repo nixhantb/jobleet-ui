@@ -4,26 +4,26 @@ import Header from "@/app/components/dashboard/header";
 import Sidebar from "@/app/components/dashboard/sidebar";
 import Footer from "@/app/components/Footer/Footer";
 import { Achievements } from "@/app/components/profile/Achievement";
-import { ContactSection } from "@/app/components/profile/ContactSection";
 import { EducationSection } from "@/app/components/profile/EducationSection";
 import { ExperienceSection } from "@/app/components/profile/ExperienceSection";
 import { Interests } from "@/app/components/profile/Interests";
 import { ProfileHeader } from "@/app/components/profile/ProfileHeader";
+import { ProjectsSection } from "@/app/components/profile/Project";
 import { SkillsSection } from "@/app/components/profile/SkillsSection";
 import { AuthProvider } from "@/context/AuthContext";
 import { ProfileProvider } from "@/context/ProfileContext";
 
 const profileData = {
     "personNameModel": {
-        "firstName": "Nishant",
-        "middleName": "Banjade",
-        "lastName": "Banjade",
-        "id": "9396c4ab-0d44-41a2-8415-efa6c4accfd1"
+        "firstName": "Steve",
+        "middleName": "KL",
+        "lastName": "JR",
+        "id": "97cb471a-f802-4976-a411-e307a309300d"
     },
     "phone": {
         "countryCode": 1,
         "phoneNumber": "1234567890",
-        "id": "7861ad26-28d2-48fd-abf2-7735555c15a5"
+        "id": "dba4dc6f-540b-40d0-9991-dd88329260bc"
     },
     "address": {
         "street": "123 Main Street",
@@ -31,27 +31,20 @@ const profileData = {
         "state": "NY",
         "postalCode": "10001",
         "country": "USA",
-        "id": "75d5c900-d545-4b4d-8f25-98be6c501818"
+        "id": "1515d6c0-12f9-4977-be65-b777e53c30c1"
     },
     "skills": {
         "title": [
             "C#",
             "ASP.NET Core",
-            "SQL",
-            "JavaScript",
-            "React",
-            "Docker",
-            "Kubernetes",
-            "Python",
-            "Azure DevOps"
-        ]
-        ,
+            "SQL"
+        ],
         "description": [
             "Proficient in C# programming",
             "Experienced with building APIs using ASP.NET Core",
             "Skilled in database design and query optimization"
         ],
-        "id": "621465c5-a538-40c4-872b-0c009ab2c5a7"
+        "id": "f67762ba-b07f-4654-9336-fa34fe0abcc1"
     },
     "education": {
         "degree": "Bachelor's",
@@ -59,7 +52,7 @@ const profileData = {
         "institution": "XYZ University",
         "graduationDate": "2023-05-15",
         "cgpa": 3.8,
-        "id": "6eabf34e-b307-4a2a-91ad-570a5168e935"
+        "id": "faf1b34d-b388-48e1-878a-a4504548cabf"
     },
     "experience": {
         "experienceLevel": "EntryLevel",
@@ -73,28 +66,30 @@ const profileData = {
                     "state": "CA",
                     "postalCode": "94103",
                     "country": "USA",
-                    "id": "fe3f5e93-c899-4170-bb66-73222d1a84ce"
+                    "id": "9f6a6d2a-0aaf-4c2d-bf75-63d766091596"
                 },
                 "contactPhone": {
                     "countryCode": 1,
                     "phoneNumber": "9876543210",
-                    "id": "d862c7d9-f0d8-45fc-ac1c-d22a01729da3"
+                    "id": "52c71db3-a1ad-44c3-a410-f0b1d92f9ca0"
                 },
                 "contactEmail": {
                     "emailType": "Work",
                     "emailAddress": "contact@techcorp.com",
-                    "id": "62a7479d-4c4d-48ee-9c62-5c766ebd3453"
+                    "id": "d308fe6e-974f-4336-8b43-69c1c44d5a40"
                 },
                 "website": "https://www.techcorp.com",
                 "industryType": {
                     "industryType": "Technology",
-                    "id": "a257fa48-905b-4310-89bc-db970f840fd6"
+                    "id": "2fac1f6c-decb-49f5-9167-b08e5c8f579a"
                 },
-                "id": "2de51ae0-31b2-4c7c-9b5d-1a741d3e4550"
+                "id": "08a6aec9-67dc-4038-ad20-963e047d7ea0"
             },
-            "id": "818c5b04-81b9-44bd-9c82-41bff557bdbf"
+            "id": "da0e5e2e-78af-491a-b5ca-0a446f36e62f"
         },
-        "id": "e6c7b035-4b22-49f1-a033-a243d2e257ca"
+        "experienceDateFrom": "0001-01-01T00:00:00",
+        "experienceDateTill": "0001-01-01T00:00:00",
+        "id": "7ee7219d-1252-4dfa-81c6-49cea30f2482"
     },
     "dateOfBirth": "1995-08-15T00:00:00Z",
     "qualifications": {
@@ -103,29 +98,19 @@ const profileData = {
             "Certified in Full Stack Development",
             "AWS Certified Solutions Architect"
         ],
-        "id": "0f4e3d8a-9c96-47eb-b3f0-d40f5e2d5432"
+        "id": "77dba1cd-eb1f-456f-a282-4deb1aaf0193"
     },
     "profileSummary": "A highly motivated software developer with experience in building scalable web applications.",
     "socialMedias": [
         {
             "title": "LinkedIn",
             "url": "www.linkedin.com/nb",
-            "id": "5c3a9004-bd3e-4650-88d8-f911309cedb7"
+            "id": "98768ebc-0b4e-47ed-a361-39f01f4aac7d"
         },
         {
             "title": "GitHub",
             "url": "www.github.com/nb",
-            "id": "48ca9444-c683-4a8c-9736-3ac924682ca0"
-        },
-        {
-            "title": "X",
-            "url": "www.x.com/nb",
-            "id": "48ca9444-c683-4a8c-9736-3ac924682ca0"
-        },
-        {
-            "title": "Website",
-            "url": "www.bn.com/nb",
-            "id": "48ca9489-c683-4a8c-4fsg-3ac924682ca0"
+            "id": "1dceb4bf-9da5-41ae-9143-3ff1dd618277"
         }
     ],
     "interests": [
@@ -137,7 +122,29 @@ const profileData = {
         "Developed a job portal application used by 10,000+ users",
         "Won first prize in a university-level hackathon"
     ],
-    "id": "a1970362-ed5b-4d0a-9f0a-ca74443a23de"
+    "projects": {
+        "title": "Job Portal Application",
+        "responsibilities": [
+            "Designed and implemented the back-end APIs using ASP.NET Core.",
+            "Integrated RabbitMQ for message queuing and pub-sub messaging.",
+            
+        ],
+        "technologiesUsed": [
+            "C#",
+            "ASP.NET Core",
+            "RabbitMQ",
+            "SQL",
+            "JWT"
+        ],
+        "role": "Full Stack Developer",
+        "startDate": "2022-06-01",
+        "endDate": "2023-05-15",
+        "isOngoing": false,
+        "projectUrl": "https://jobportal.example.com",
+        "gitHubUrl": "https://jobportal.example.com",
+        "id": "1ce4d197-ed5d-4596-b87c-3c15dc3dcdf3"
+    },
+    "id": "b4dc5b8a-a78b-4a8c-8308-20c7e5ad73a4"
 }
 
 
@@ -157,7 +164,8 @@ export default function Seejers() {
                                 <div className="md:col-span-2 space-y-6">
                                     <ExperienceSection />
                                     <EducationSection />
-                                    <Interests/>
+                                    <ProjectsSection/>
+                                    
 
                                 </div>
                                 <div>
@@ -166,6 +174,10 @@ export default function Seejers() {
 
                                     </div>
                                     <Achievements />
+                                    <div className="my-4 flex justify-center">
+
+</div>
+                                    <Interests/>
 
                                 </div>
                             </div>

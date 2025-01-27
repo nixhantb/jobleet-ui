@@ -79,6 +79,20 @@ export interface SocialMedia {
   id: string;
 }
 
+export interface Projects {
+  id: string;
+  title: string;
+  role: string;
+  startDate: string;
+  endDate: string;
+  isOngoing: boolean;
+  responsibilities: string[];
+  technologiesUsed: string[];
+  projectUrl: string;
+  gitHubUrl: string;
+}
+
+
 export interface UserProfile {
   personNameModel: PersonNameModel,
   phone: Phone;
@@ -89,6 +103,7 @@ export interface UserProfile {
   dateOfBirth: string;
   qualifications: Qualifications;
   profileSummary: string;
+  projects: Projects;
   interests: string[];
   achievements: string[];
   socialMedias: SocialMedia[];
