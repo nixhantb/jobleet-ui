@@ -14,6 +14,8 @@ import { AuthProvider } from "@/context/AuthContext";
 import { ProfileProvider } from "@/context/ProfileContext";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { Button } from "@/components/ui/button";
+import { Download } from "lucide-react";
 
 const profileData = {
     personNameModel: {
@@ -136,63 +138,59 @@ const profileData = {
 
 export default function Seekers() {
     const handleDownloadPDF = async () => {
-        const element = document.getElementById("profile-content"); 
-        if (!element) return;
+        const element = document.getElementById("profile-content")
+        if (!element) return
 
-        const canvas = await html2canvas(element, { scale: 2 }); 
-        const imgData = canvas.toDataURL("image/png");
+        const canvas = await html2canvas(element, { scale: 2 })
+        const imgData = canvas.toDataURL("image/png")
 
-        const pdf = new jsPDF("p", "mm", "a4"); 
-        const imgWidth = 210; 
-        const imgHeight = (canvas.height * imgWidth) / canvas.width; 
+        const pdf = new jsPDF("p", "mm", "a4")
+        const imgWidth = 210
+        const imgHeight = (canvas.height * imgWidth) / canvas.width
 
-        pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-        pdf.save("profile.pdf"); 
-    };
+        pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight)
+        pdf.save("profile.pdf")
+    }
 
     return (
         <AuthProvider>
             <ProfileProvider profile={profileData}>
-                <Header />
-                <div className="flex min-h-screen">
-                    <div className="flex-shrink-0">
-                        <Sidebar />
-                    </div>
-
-                    <main className="flex-grow container mx-auto px-4 py-8">
-                       
-                        <div id="profile-content" className="max-w-6xl mx-auto space-y-6">
-                            <ProfileHeader />
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div className="md:col-span-2 space-y-6">
-                                    <ExperienceSection />
-                                    <EducationSection />
-                                    <ProjectsSection />
+                <div className="flex h-screen overflow-hidden bg-gray-100">
+                    <Sidebar />
+                    <div className="flex flex-col flex-1 overflow-hidden">
+                        <Header />
+                        <main className="flex-1 overflow-y-auto">
+                            <div className="container mx-auto px-4 py-8">
+                                <div className="flex justify-between items-center mb-6">
+                                    <h1 className="text-3xl font-bold text-gray-800">My Profile</h1>
+                                    <Button onClick={handleDownloadPDF} variant="outline">
+                                        <Download className="mr-2 h-4 w-4" />
+                                        Generate Resume
+                                    </Button>
                                 </div>
-                                <div>
-                                    <SkillsSection />
-                                    <div className="my-4 flex justify-center"></div>
-                                    <Achievements />
-                                    <div className="my-4 flex justify-center"></div>
-                                    <Interests />
+                                <div id="profile-content" className="bg-white shadow-lg rounded-lg p-6 space-y-6">
+                                    <ProfileHeader />
+                                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                        <div className="lg:col-span-2 space-y-6">
+                                            <ExperienceSection />
+                                            <EducationSection />
+                                            <ProjectsSection />
+                                        </div>
+                                        <div className="space-y-6">
+                                            <SkillsSection />
+                                            <Achievements />
+                                            <Interests />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </main>
 
-                       
-                        <button
-                            onClick={handleDownloadPDF}
-                            className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                        >
-                            Download Resume
-                        </button>
-                    </main>
-                </div>
+                    </div>
 
-                <div className="mt-8">
-                    <Footer />
                 </div>
+                <Footer />
             </ProfileProvider>
         </AuthProvider>
-    );
+    )
 }
