@@ -15,47 +15,48 @@ export function ProjectsSection() {
                     <GraduationCap className="w-5 h-5" />
                     Projects
                 </CardTitle>
-
-                <div className="flex items-center gap-4"> {/* Add gap for spacing between links */}
-                    {profile.projects.projectUrl && (
-                        <a
-                            href={profile.projects.projectUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-500 hover:underline"
-                        >
-                            Project Website
-                        </a>
-                    )}
-
-                    {profile.projects.gitHubUrl && (
-                        <a
-                            href={profile.projects.gitHubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-500 hover:underline"
-                        >
-                            GitHub Repository
-                        </a>
-                    )}
-                </div>
-
                 <EditDialog section="education" title="Projects" />
             </CardHeader>
 
             <CardContent>
                 <div className="space-y-4">
-                    <div>
+                   
+                    <div className="flex flex-row gap-4">
+                        {profile.projects.projectUrl && (
+                            <a
+                                href={profile.projects.projectUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-500 hover:underline text-sm sm:text-base"
+                            >
+                                Demo
+                            </a>
+                        )}
+                        {profile.projects.gitHubUrl && (
+                            <a
+                                href={profile.projects.gitHubUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-500 hover:underline text-sm sm:text-base"
+                            >
+                                GitHub
+                            </a>
+                        )}
+                    </div>
+
+                   
+                    <div className="flex flex-row items-center justify-between">
                         <h3 className="font-semibold">{profile.projects.title}</h3>
                         <p className="text-muted-foreground">{profile.projects.role}</p>
                         <div className="flex justify-between items-center mt-1">
                             <span className="text-sm text-muted-foreground">
-                                Duration: {new Date(profile.projects.startDate).toLocaleDateString()} - {new Date(profile.projects.endDate).toLocaleDateString()}
+                                {new Date(profile.projects.startDate).toLocaleDateString()} - {new Date(profile.projects.endDate).toLocaleDateString()}
                             </span>
                             {profile.projects.isOngoing && <span className="text-sm font-medium">Ongoing</span>}
                         </div>
                     </div>
 
+                  
                     <div>
                         <h4 className="font-semibold">Responsibilities</h4>
                         <ul className="list-disc list-inside text-sm text-muted-foreground">
@@ -65,6 +66,7 @@ export function ProjectsSection() {
                         </ul>
                     </div>
 
+                   
                     <div>
                         <h4 className="font-semibold">Technologies Used</h4>
                         <ul className="list-inside text-sm text-muted-foreground">
