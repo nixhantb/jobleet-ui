@@ -9,11 +9,31 @@
 [![GitHub Stars](https://img.shields.io/github/stars/nixhantb/jobleet-ui?label=GitHub%20stars&style=social)](https://github.com/nixhantb/jobleet-ui/stargazers/)
 
 # Introduction
-
 **Job Leet** is the smart recruitment platform designed to transform how job seekers and recruiters and Companies connect.  
 
+### Highlights
+
+**Application Trackings**
 
 ![logo](https://github.com/nixhantb/Recruitment-erp/blob/main/docs/assets/dashboard.png?raw=true)
+
+**Generate Resume from profile**
+
+![logo](/app/assets/seekersPage.png)
+
+**Find Jobs with Advance Filter**
+
+![logo](/app/assets/JobsPage.png)
+
+**Dark Mode or Light Mode**
+
+![logo](/app/assets/darkMode.png)
+
+**Secure Authentication with Identity Core**
+
+![logo](/app/assets/auth.png)
+
+
 ## **Features**
 
 
