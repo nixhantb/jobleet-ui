@@ -34,7 +34,7 @@
 ![logo](/app/assets/auth.png)
 
 
-## **Features**
+## **More Features**
 
 
 - [x] **Personalized Job Recommendations**: Matches candidates with job openings tailored to their skills, preferences, and career goals.
