@@ -1,34 +1,99 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect } from 'react'
-import { useSearchParams } from 'next/navigation'
-import { MapPin, Building2} from 'lucide-react'
+import React, { useState, useEffect } from "react"
+import { useSearchParams } from "next/navigation"
+import { MapPin, Building2, Briefcase, DollarSign, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
+import { Badge } from "@/components/ui/badge"
 import { Slider } from "@/components/ui/slider"
 import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
-import Image from 'next/image'
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination'
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
+import Link from "next/link"
+import { Separator } from "@radix-ui/react-dropdown-menu"
 
-type Job = {
-  id: number
-  companyName: string
-  location: string
+import { motion } from "framer-motion"
+import { fadeInUp, staggerChildren } from "../../(pages)/jobs/[id]/animations"
+
+export type Job = {
+  companyDescription: {
+    companyName: string
+    profile: {
+      profileInfo: string
+      companyAddress: {
+        street: string
+        city: string
+        state: string
+        postalCode: string
+        country: string
+        id: string
+      }
+      contactPhone: {
+        countryCode: number
+        phoneNumber: string
+        id: string
+      }
+      contactEmail: {
+        emailType: string
+        emailAddress: string
+        id: string
+      }
+      website: string
+      industryType: string | null
+      id: string
+    }
+    id: string
+  }
   jobTitle: string
   jobDescription: string
-  postedTime: string
   jobType: string
-  image: string
-  keySkills: string[]
-  salary?: string
+  jobAddress: {
+    street: string
+    city: string
+    state: string
+    postalCode: string
+    country: string
+    id: string
+  }
+  vacancies: number
+  basicPay: {
+    minmumPay: number | null
+    maximumPay: number
+    currency: string
+  }
+  functionalArea: string
+  skillsRequired: {
+    title: string[]
+    description: string[]
+    id: string
+  }
+  requiredQualification: {
+    qualificationType: string
+    qualificationInformation: string[]
+    id: string | null
+  }
+  requiredExperience: {
+    experienceLevel: string
+    companyModel: string | null
+    experienceDateFrom: string
+    experienceDateTill: string
+    id: string | null
+  }
+  preferredQualifications: string[]
+  jobResponsibilities: string[]
+  benefits: string[]
+  tags: string[]
+  workEnvironment: string
+  postingDate: string
+  applicationDeadline: string
+  id: string
 }
 
 type JobListingsProps = {
@@ -40,58 +105,51 @@ const locations = ["San Francisco, CA", "New York, NY", "Remote", "London, UK"]
 
 const Jobs = ({ initialJobs }: JobListingsProps) => {
   const searchParams = useSearchParams()
-  const [searchTerm, setSearchTerm] = useState('')
-  const [location, setLocation] = useState('')
+  const [searchTerm, setSearchTerm] = useState("")
+  const [location, setLocation] = useState("")
   const [filteredJobs, setFilteredJobs] = useState<Job[]>(initialJobs)
   const [selectedJobTypes, setSelectedJobTypes] = useState<string[]>([])
   const [selectedLocations, setSelectedLocations] = useState<string[]>([])
   const [salaryRange, setSalaryRange] = useState([0, 200000])
   const [selectedJob, setSelectedJob] = useState<Job | null>(null)
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(4);
+  const [currentPage, setCurrentPage] = useState(1)
+  const [itemsPerPage] = useState(4)
 
-  const totalPages = Math.ceil(filteredJobs.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredJobs.length / itemsPerPage)
 
   useEffect(() => {
-    setSearchTerm(searchParams.get('search') || '')
-    setLocation(searchParams.get('location') || '')
+    setSearchTerm(searchParams.get("search") || "")
+    setLocation(searchParams.get("location") || "")
   }, [searchParams])
 
   useEffect(() => {
-    const updatedJobs = initialJobs.filter(job => {
+    const updatedJobs = initialJobs.filter((job) => {
       const matchesSearch =
         job.jobTitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        job.companyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.companyDescription.companyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         job.jobDescription.toLowerCase().includes(searchTerm.toLowerCase()) ||
         job.jobType.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        job.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        job.keySkills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()))
-
+        job.companyDescription.profile.companyAddress.country.toLowerCase().includes(searchTerm.toLowerCase())
       const matchesLocation = location
-        ? job.location.toLowerCase().includes(location.toLowerCase())
+        ? job.companyDescription.profile.companyAddress.country.toLowerCase().includes(location.toLowerCase())
         : true
 
       const matchesJobType = selectedJobTypes.length === 0 || selectedJobTypes.includes(job.jobType)
-      const matchesSelectedLocation = selectedLocations.length === 0 || selectedLocations.includes(job.location)
+      const matchesSelectedLocation =
+        selectedLocations.length === 0 ||
+        selectedLocations.includes(job.companyDescription.profile.companyAddress.country)
 
-      const matchesSalaryRange = job.salary
-        ? (() => {
-          const [min, max] = job.salary.replace(/[$,]/g, '').split('-').map(Number)
-          return min >= salaryRange[0] && max <= salaryRange[1]
-        })()
-        : true
-
-      return matchesSearch && matchesLocation && matchesJobType && matchesSelectedLocation && matchesSalaryRange
+      return matchesSearch && matchesLocation && matchesJobType && matchesSelectedLocation
     })
 
     setFilteredJobs(updatedJobs)
   }, [searchTerm, location, initialJobs, selectedJobTypes, selectedLocations, salaryRange])
 
-  const paginatedJobs = filteredJobs.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const paginatedJobs = filteredJobs.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    setCurrentPage(page)
   }
 
   const FilterContent = () => (
@@ -104,11 +162,7 @@ const Jobs = ({ initialJobs }: JobListingsProps) => {
               id={`job-type-${type}`}
               checked={selectedJobTypes.includes(type)}
               onCheckedChange={(checked) => {
-                setSelectedJobTypes(
-                  checked
-                    ? [...selectedJobTypes, type]
-                    : selectedJobTypes.filter((t) => t !== type)
-                )
+                setSelectedJobTypes(checked ? [...selectedJobTypes, type] : selectedJobTypes.filter((t) => t !== type))
               }}
             />
             <label
@@ -128,11 +182,7 @@ const Jobs = ({ initialJobs }: JobListingsProps) => {
               id={`location-${loc}`}
               checked={selectedLocations.includes(loc)}
               onCheckedChange={(checked) => {
-                setSelectedLocations(
-                  checked
-                    ? [...selectedLocations, loc]
-                    : selectedLocations.filter((l) => l !== loc)
-                )
+                setSelectedLocations(checked ? [...selectedLocations, loc] : selectedLocations.filter((l) => l !== loc))
               }}
             />
             <label
@@ -166,22 +216,7 @@ const Jobs = ({ initialJobs }: JobListingsProps) => {
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col gap-4">
         <div className="w-full">
-
-          <div className="md:hidden">
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="outline" className="w-full mb-4">Filters</Button>
-              </SheetTrigger>
-              <SheetContent>
-                <SheetHeader>
-                  <SheetTitle>Filters</SheetTitle>
-                </SheetHeader>
-                <div className="mt-4">
-                  <FilterContent />
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
+          <div className="md:hidden"></div>
         </div>
         <div className="flex flex-col md:flex-row gap-8">
           <aside className="hidden md:block w-full md:w-1/4 border-2 border-gray-300 rounded-lg p-4 shadow-lg">
@@ -192,54 +227,52 @@ const Jobs = ({ initialJobs }: JobListingsProps) => {
           <main className="w-full md:w-3/4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {paginatedJobs.map((job) => (
+
                 <Card key={job.id} className="transition-all duration-300 hover:shadow-lg">
-                  <CardHeader className="flex flex-row items-center gap-4">
-                    {job.image ? (
-                      <Image src={job.image} alt={job.companyName} width={48} height={48} className="rounded-full" />
-                    ) : (
-                      <Building2 className="h-12 w-12 text-primary" />
-                    )}
-                    <div>
-                      <CardTitle>{job.jobTitle}</CardTitle>
-                      <CardDescription>{job.companyName}</CardDescription>
-                    </div>
-                  </CardHeader>
+
                   <CardContent>
-                    <p className="text-sm mb-2">
-                      <MapPin className="inline-block mr-1 h-4 w-4" /> {job.location} • {job.jobType}
-                    </p>
-                    <p className="text-sm text-muted-foreground mb-4">{job.jobDescription.slice(0, 100)}...</p>
-                    <p className="text-xs text-muted-foreground mb-4">Posted {job.postedTime}</p>
-                    <Sheet>
-                      <SheetTrigger asChild>
-                        <Button
-                          variant="outline"
-                          className="w-full"
-                          onClick={() => setSelectedJob(job)}
-                        >
-                          Learn More
-                        </Button>
-                      </SheetTrigger>
-                      <SheetContent>
-                        <SheetHeader>
-                          <SheetTitle>{selectedJob?.jobTitle}</SheetTitle>
-                          <SheetDescription>{selectedJob?.companyName} • {selectedJob?.location}</SheetDescription>
-                        </SheetHeader>
-                        <div className="mt-6">
-                          <h3 className="text-lg font-semibold mb-2">Job Description</h3>
-                          <p className="text-sm mb-4">{selectedJob?.jobDescription}</p>
-                          <h3 className="text-lg font-semibold mb-2">Key Skills</h3>
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            {selectedJob?.keySkills.map((skill, index) => (
-                              <span key={index} className="bg-primary/10 text-primary text-xs px-2 py-1 rounded-full">
-                                {skill}
-                              </span>
-                            ))}
+                    <CardHeader>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center space-x-4">
+                          <Building2 className="h-12 w-12 text-primary" />
+                          <div>
+                            <CardTitle className="text-2xl">{job.jobTitle}</CardTitle>
+                            <p className="text-muted-foreground">{job.companyDescription.companyName}</p>
                           </div>
-                          <Button className="w-full">Apply Now</Button>
                         </div>
-                      </SheetContent>
-                    </Sheet>
+                        <Button variant="outline">Apply Now</Button>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-wrap gap-4 mb-4">
+                        <Badge variant="secondary" className="flex items-center">
+                          <MapPin className="mr-1 h-3 w-3" />
+                          {job.jobAddress.city}, {job.jobAddress.state}
+                        </Badge>
+                        <Badge variant="secondary" className="flex items-center">
+                          <Briefcase className="mr-1 h-3 w-3" />
+                          {job.jobType}
+                        </Badge>
+                        <Badge variant="secondary" className="flex items-center">
+                          <DollarSign className="mr-1 h-3 w-3" />
+                          {job.basicPay.currency} {job.basicPay.minmumPay} - {job.basicPay.maximumPay}
+                        </Badge>
+                        <Badge variant="secondary" className="flex items-center">
+                          <Calendar className="mr-1 h-3 w-3" />
+                          Apply by {job.applicationDeadline}
+                        </Badge>
+                      </div>
+                      <Separator className="my-4" />
+                      <motion.div variants={fadeInUp}>
+                        <h2 className="text-xl font-semibold mb-2">Job Description</h2>
+                        <p className="text-muted-foreground">{job.jobDescription}</p>
+                      </motion.div>
+                    </CardContent>
+                    <Link href={`/jobs/${job.id}`} passHref>
+                      <Button variant="outline" className="w-full">
+                        Learn More
+                      </Button>
+                    </Link>
                   </CardContent>
                 </Card>
               ))}
@@ -253,10 +286,7 @@ const Jobs = ({ initialJobs }: JobListingsProps) => {
                   />
                   {Array.from({ length: totalPages }, (_, index) => (
                     <PaginationItem key={index}>
-                      <PaginationLink
-                        isActive={currentPage === index + 1}
-                        onClick={() => handlePageChange(index + 1)}
-                      >
+                      <PaginationLink isActive={currentPage === index + 1} onClick={() => handlePageChange(index + 1)}>
                         {index + 1}
                       </PaginationLink>
                     </PaginationItem>
