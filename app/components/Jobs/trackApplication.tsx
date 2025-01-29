@@ -39,7 +39,7 @@ export function JobApplicationWorkflow() {
   return (
     <section className="w-full py-8 px-4 mx-auto bg-muted">
       <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
+        
         <div className="text-center mb-8">
           <h2 className="text-2xl font-semibold mb-2 sm:text-3xl lg:text-4xl">
             Streamlined Hiring Process
