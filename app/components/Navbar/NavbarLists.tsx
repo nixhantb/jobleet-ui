@@ -37,11 +37,11 @@ const navItems: NavbarItems[] = [
         title: 'Job Seekers',
         href: '/job-seekers',
         dropdownItems: [
-            { title: 'Saved Jobs', href: '/job-seekers/saved-jobs' },
+            { title: 'Saved Jobs', href: '/job-seekers/dashboards' },
             { title: 'Recommendations', href: '/job-seekers/recommedations' },
             { title: 'Browse Jobs', href: '/jobs' },
             { title: 'Career Resources', href: '/seekers/career-resources' },
-            { title: 'Resume Builder', href: '/seekers/resume-builder' },
+            { title: 'Resume Builder', href: '/seekers/seekers' },
 
         ],
     },
@@ -49,21 +49,33 @@ const navItems: NavbarItems[] = [
 const NavbarLists = () => {
 
     const router = useRouter();
-
+    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
     return (
-       
-            <Navbar
-                navItems={navItems}
-                rightItems={
-                    <>
-                        <Button  onClick={()=> router.push('/login')} variant="ghost">Login</Button>
-                        <Button onClick={()=> router.push('/register')}>Register</Button>
-                    </>
-                }
+        <Navbar
+          navItems={navItems}
+          rightItems={
+            token ? (
+              <Button
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  router.push("/");
+                }}
+                variant="ghost"
+              >
+                Logout
+              </Button>
+            ) : (
+              <>
+                <Button onClick={() => router.push("/login")} variant="ghost">
+                  Login
+                </Button>
+                <Button onClick={() => router.push("/register")}>Register</Button>
+              </>
+            )
+          }
+        />
+      );
+    }
+      
 
-            ></Navbar>
-       
-    )
-}
-
-export default NavbarLists
+export default NavbarLists;
