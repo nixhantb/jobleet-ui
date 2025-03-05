@@ -1,78 +1,69 @@
-'use client'
+"use client"
 
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import type React from "react"
+import { createContext, useContext, useState, type ReactNode, useEffect } from "react"
+import { jwtDecode } from "jwt-decode"
 
 interface AuthContextType {
-  user: any;
-  setUser: (user: any) => void;
-  logout: () => void;
-  isInitialized: boolean;
+  user: any
+  setUser: (user: any) => void
+  logout: () => void
+  isInitialized: boolean
 }
 
 interface AuthProviderProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<any>(null)
+  const [isInitialized, setIsInitialized] = useState(false)
 
-  // Initialize user state from localStorage on mount
   useEffect(() => {
     try {
-      const savedUser = localStorage.getItem('user');
-      if (savedUser) {
-        setUser(JSON.parse(savedUser));
+      
+      const token = localStorage.getItem("token")
+
+      if (token) {
+        // Decode the JWT token to get user information
+        const decoded = jwtDecode(token)
+        setUser(decoded)
       }
     } catch (error) {
-      console.error('Error reading from localStorage:', error);
-    } finally {
-      setIsInitialized(true);
+      console.error("Error decoding token:", error)
+      // Clear invalid token
+      localStorage.removeItem("token")
     }
-  }, []);
+    setIsInitialized(true)
+  }, [])
 
-  // Update localStorage when user state changes
+  // This effect handles storing the token when user is updated
   useEffect(() => {
-    if (!isInitialized) return;
+    if (!isInitialized) return
 
-    try {
-      if (user) {
-        localStorage.setItem('user', JSON.stringify(user));
-      } else {
-        localStorage.removeItem('user');
-      }
-    } catch (error) {
-      console.error('Error writing to localStorage:', error);
-    }
-  }, [user, isInitialized]);
+    // We don't store the user object directly, only the token
+    // The token is set elsewhere in your login flow
+  }, [isInitialized]) // Removed unnecessary dependency: user
 
   const logout = () => {
-    try {
-      setUser(null);
-      localStorage.removeItem('user');
-    } catch (error) {
-      console.error('Error during logout:', error);
-    }
-  };
-
-  
-  if (!isInitialized) {
-    return null; 
+    localStorage.removeItem("token")
+    setUser(null)
   }
 
-  return (
-    <AuthContext.Provider value={{ user, setUser, logout, isInitialized }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+  if (!isInitialized) {
+    return null
+  }
+
+  return <AuthContext.Provider value={{ user, setUser, logout, isInitialized }}>{children}</AuthContext.Provider>
+}
 
 export const useAuth = () => {
-  const context = useContext(AuthContext);
+  const context = useContext(AuthContext)
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider")
   }
-  return context;
-};
+  return context
+}
+
