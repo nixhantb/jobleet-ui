@@ -18,14 +18,13 @@ export default function LoginPage() {
   const [isMounted, setIsMounted] = useState(false)
 
   const [formData, setFormData] = useState({
-    emailAddress: '',
+    email: '',
     password: ''
   })
 
   const router = useRouter();
   const { setUser } = useAuth();
 
-  // Add useEffect to handle mounting state
   useEffect(() => {
     setIsMounted(true)
   }, [])
@@ -43,12 +42,12 @@ export default function LoginPage() {
     setIsLoading(true)
    
     const payload = {
-      emailAddress: formData.emailAddress,
+      email: formData.email,
       password: formData.password
     }
 
     try {
-      const response = await axios.post('http://localhost:5184/api/v1/logins', payload);
+      const response = await axios.post('http://localhost:5184/api/Account/login', payload);
       
       if (response.status === 200) {
         const { token } = response.data;
@@ -59,7 +58,8 @@ export default function LoginPage() {
         }
         
         setUser(response.data);
-        router.push('/dashboard');
+        
+        router.push('/jobs');
       }
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) {
@@ -111,12 +111,12 @@ export default function LoginPage() {
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
-              id="emailAddress"
+              id="email"
               type="email"
               placeholder="john.doe@example.com"
               required
               className="w-full"
-              value={formData.emailAddress}
+              value={formData.email}
               onChange={handleChange}
             />
           </div>

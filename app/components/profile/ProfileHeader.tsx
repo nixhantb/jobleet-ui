@@ -15,7 +15,7 @@ export function ProfileHeader() {
     <Card className="border-none shadow-none">
       <CardContent className="p-6">
         <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
-          {/* Avatar Section */}
+          
           <Avatar className="w-24 h-24">
             <AvatarImage
               src="https://images.unsplash.com/photo-1728577740843-5f29c7586afe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D"
@@ -24,15 +24,15 @@ export function ProfileHeader() {
             <AvatarFallback>UN</AvatarFallback>
           </Avatar>
 
-          {/* Profile Details */}
+          
           <div className="flex-1 text-center md:text-left">
-            {/* Header */}
+           
             <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-2 mb-4">
               <h1 className="text-2xl font-bold">User Profile</h1>
               <EditDialog section="basic" title="Basic Information" />
             </div>
 
-            {/* Name and Summary */}
+           
             <h2 className="text-xl sm:text-2xl font-bold">
               {profile?.personNameModel?.firstName || "First Name"}{" "}
               {profile?.personNameModel?.lastName || "Last Name"}
@@ -40,10 +40,6 @@ export function ProfileHeader() {
             <p className="text-muted-foreground mb-4">
               {profile?.profileSummary || "No profile summary available."}
             </p>
-
-
-
-
 
             <div className="flex flex-col sm:flex-row sm:gap-4 gap-2 items-center sm:items-start">
               {profile?.phone && (

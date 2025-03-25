@@ -111,7 +111,6 @@ const Jobs = ({ initialJobs }: JobListingsProps) => {
   const [selectedJobTypes, setSelectedJobTypes] = useState<string[]>([])
   const [selectedLocations, setSelectedLocations] = useState<string[]>([])
   const [salaryRange, setSalaryRange] = useState([0, 200000])
-  const [selectedJob, setSelectedJob] = useState<Job | null>(null)
 
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage] = useState(4)

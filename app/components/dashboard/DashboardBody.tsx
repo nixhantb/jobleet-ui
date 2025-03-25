@@ -1,124 +1,103 @@
 "use client"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-
-import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight, ArrowDownRight, Users, Briefcase, Building2, Eye } from "lucide-react";
-import { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { useAuth } from "@/context/AuthContext";
-
-const cardContents = [
-  {
-    cardTitle: "Applied Jobs",
-    count: "26",
-    content: "+12.5% from last month",
-    icon: <Users className="h-4 w-4 text-muted-foreground" />,
-    trendIcon: <ArrowUpRight className="mr-1 h-4 w-4" />,
-    trendColor: "text-green-500",
-  },
-  {
-    cardTitle: "Active Jobs",
-    count: "14",
-    content: "-2.3% from last month",
-    icon: <Briefcase className="h-4 w-4 text-muted-foreground" />,
-    trendIcon: <ArrowDownRight className="mr-1 h-4 w-4" />,
-    trendColor: "text-red-500",
-  },
-  {
-    cardTitle: "Companies",
-    count: "43",
-    content: "+8.1% from last month",
-    icon: <Building2 className="h-4 w-4 text-muted-foreground" />,
-    trendIcon: <ArrowUpRight className="mr-1 h-4 w-4" />,
-    trendColor: "text-green-500",
-  },
-  {
-    cardTitle: "Total Searches",
-    count: "1,234",
-    content: "+15.2% from last month",
-    icon: <Eye className="h-4 w-4 text-muted-foreground" />,
-    trendIcon: <ArrowUpRight className="mr-1 h-4 w-4" />,
-    trendColor: "text-green-500",
-  },
-];
-
-const recentApplications = [
-  {
-    id: 1,
-    position: "Senior Frontend Developer",
-    company: "TechCorp Inc.",
-    status: "pending",
-  },
-  {
-    id: 2,
-    position: "Product Manager",
-    company: "Innovation Labs",
-    status: "reviewing",
-  },
-  {
-    id: 3,
-    position: "UX Designer",
-    company: "Creative Solutions",
-    status: "accepted",
-  },
-  {
-    id: 4,
-    position: "Backend Engineer",
-    company: "DataTech Systems",
-    status: "rejected",
-  },
-  {
-    id: 5,
-    position: "Software Engineer",
-    company: "AlphaCode Inc.",
-    status: "pending",
-  },
-];
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Badge } from "@/components/ui/badge"
+import { ArrowUpRight, ArrowDownRight, Users, Briefcase, Building2, Eye } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import Link from "next/link"
+import { Skeleton } from "@/components/ui/skeleton"
 
 function getStatusVariant(status: string): "default" | "secondary" | "destructive" | "outline" {
   switch (status) {
     case "pending":
-      return "default";
+      return "default"
     case "reviewing":
-      return "secondary";
+      return "secondary"
     case "accepted":
-      return "secondary";
+      return "secondary"
     case "rejected":
-      return "destructive";
+      return "destructive"
     default:
-      return "default";
+      return "default"
   }
 }
 
-export default function DashboardBody() {
-  const [filter, setFilter] = useState("");
+type DashboardBodyProps = {
+  user: any
+  loading: boolean
+  cardData: {
+    appliedJobs: number
+    activeJobs: number
+    companies: number
+    totalSearches: number
+  }
+  applicationData: JobApplication[]
+  filter: string
+  setFilter: (value: string) => void
+}
 
-  const filteredApplications = recentApplications.filter(
-    (application) =>
-      application.position.toLowerCase().includes(filter.toLowerCase()) ||
-      application.company.toLowerCase().includes(filter.toLowerCase()) ||
-      application.status.toLowerCase().includes(filter.toLowerCase())
-  );
+export default function DashboardBody({
+  user,
+  loading,
+  cardData,
+  applicationData,
+  filter,
+  setFilter,
+}: DashboardBodyProps) {
+  
+  const cardContents = [
+    {
+      cardTitle: "Applied Jobs",
+      count: cardData.appliedJobs.toString(),
+      content: "+12.5% from last month",
+      icon: <Users className="h-4 w-4 text-muted-foreground" />,
+      trendIcon: <ArrowUpRight className="mr-1 h-4 w-4" />,
+      trendColor: "text-green-500",
+    },
+    {
+      cardTitle: "Active Jobs",
+      count: cardData.activeJobs.toString(),
+      content: "-2.3% from last month",
+      icon: <Briefcase className="h-4 w-4 text-muted-foreground" />,
+      trendIcon: <ArrowDownRight className="mr-1 h-4 w-4" />,
+      trendColor: "text-red-500",
+    },
+    {
+      cardTitle: "Companies",
+      count: cardData.companies.toString(),
+      content: "+8.1% from last month",
+      icon: <Building2 className="h-4 w-4 text-muted-foreground" />,
+      trendIcon: <ArrowUpRight className="mr-1 h-4 w-4" />,
+      trendColor: "text-green-500",
+    },
+    {
+      cardTitle: "Total Searches",
+      count: cardData.totalSearches.toString(),
+      content: "+15.2% from last month",
+      icon: <Eye className="h-4 w-4 text-muted-foreground" />,
+      trendIcon: <ArrowUpRight className="mr-1 h-4 w-4" />,
+      trendColor: "text-green-500",
+    },
+  ]
 
+  if (loading) {
+    return (
+      <div className="flex flex-col gap-5">
+        <Skeleton className="h-8 w-[300px]" />
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {[...Array(4)].map((_, i) => (
+            <Skeleton key={i} className="h-[120px]" />
+          ))}
+        </div>
+        <Skeleton className="h-[400px]" />
+      </div>
+    )
+  }
 
-  const {user} = useAuth();
   return (
     <div className="flex flex-col gap-5">
-      <h2 className="text-3xl font-bold tracking-tight">Welcome Back, {user?.personName?.firstName || ''}</h2>
+      <h2 className="text-3xl font-bold tracking-tight">Welcome Back, {user?.personName?.firstName || "User"}</h2>
+
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {cardContents.map((card, index) => (
           <Card key={index}>
@@ -136,22 +115,22 @@ export default function DashboardBody() {
           </Card>
         ))}
       </div>
+
       <Card>
         <CardHeader>
           <CardTitle>Recent Applications</CardTitle>
-          <CardDescription></CardDescription>
+          <CardDescription>
+            <Input
+              type="text"
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              placeholder="Filter by position, company or status"
+              className="mt-2 max-w-md"
+            />
+          </CardDescription>
         </CardHeader>
         <CardContent>
-        <Input
-          type="text"
-          id="filter"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-          placeholder="filter by positions, company or status"
-          className="border rounded-md px-3 py-1 text-sm"
-        />
           <Table>
-
             <TableHeader>
               <TableRow>
                 <TableHead>Position</TableHead>
@@ -160,21 +139,36 @@ export default function DashboardBody() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filteredApplications.map((application) => (
-                <TableRow key={application.id}>
-                  <TableCell>{application.position}</TableCell>
-                  <TableCell>{application.company}</TableCell>
-                  <TableCell>
-                    <Badge variant={getStatusVariant(application.status)}>
-                      {application.status}
-                    </Badge>
+              {applicationData.length > 0 ? (
+                applicationData.map((application) => (
+                  
+                  <TableRow key={application.id}>
+                    <TableCell>
+                      <Link href={`/jobs/${application?.jobsId}`} className="text-blue-600 hover:underline">
+                        {application.jobs?.jobTitle || "N/A"}
+                      </Link>
+                    </TableCell>
+                    <TableCell>{application.jobs?.companyDescription.companyName || "N/A"}</TableCell>
+                    <TableCell>
+                      <Badge variant={getStatusVariant(application.status?.statusName)}>
+                        {application.status?.statusName || "N/A"}
+                      </Badge>
+                    </TableCell>
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell colSpan={3} className="text-center py-4 text-muted-foreground">
+                    No applications found
                   </TableCell>
                 </TableRow>
-              ))}
+              )}
             </TableBody>
+
           </Table>
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }
+
