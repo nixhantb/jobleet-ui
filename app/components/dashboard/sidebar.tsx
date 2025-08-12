@@ -5,10 +5,8 @@ import { cn } from '@/lib/utils';
 import {
   LayoutDashboard,
   Users,
-  Calendar,
   Settings,
   FileText,
-  BarChart,
   Mail,
   ChevronLeft,
   BookMarked,
@@ -19,9 +17,7 @@ import { Button } from '@/components/ui/button';
 const sidebarItems = [
   { icon: Users, label: 'Profile', href: '/seekers' },
   {icon: BookMarked, label: 'Saved Jobs', href: '/saved-jobs'},
-  { icon: Calendar, label: 'Calendar', href: '/calendar' },
   { icon: FileText, label: 'Documents', href: '/documents' },
-  { icon: BarChart, label: 'Analytics', href: '/analytics' },
   { icon: Mail, label: 'Messages', href: '/messages' },
   { icon: Settings, label: 'Settings', href: '/settings' },
 ];
@@ -33,8 +29,9 @@ export default function Sidebar() {
 
   return (
     <>
+    
       <div className={cn(
-      "flex flex-col h-screen bg-white border-r border-gray-200 transition-all duration-300",
+      "flex flex-col h-screen border-r transition-all duration-300",
       collapsed ? "w-16" : "w-64"
     )}>
       <div className="flex items-center justify-between p-4 border-b">
@@ -79,6 +76,5 @@ export default function Sidebar() {
 
     </>
   
-     
   );
 }

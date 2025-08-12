@@ -9,7 +9,7 @@ const steps = [
   {
     icon: Briefcase,
     title: "Job",
-    description: "Find and select the job you want to apply for."
+    description: "Curated Job recommendations based upon your profile"
   },
   {
     icon: Upload,
@@ -19,7 +19,7 @@ const steps = [
   {
     icon: Mic,
     title: "Interview",
-    description: "Participate in a virtual interview in our platform to showcase your talents"
+    description: "Participate in an interview in our platform to showcase your talents"
   },
   {
     icon: ClipboardList,

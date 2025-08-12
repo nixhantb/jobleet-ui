@@ -24,17 +24,10 @@ export default function NotificationsMenu() {
     {
       id: '1',
       title: 'New Message',
-      message: 'You have a new message from the team',
+      message: 'Welcome to the Dashboard..',
       time: '5m ago',
       read: false,
-    },
-    {
-      id: '2',
-      title: 'System Update',
-      message: 'System maintenance scheduled for tonight',
-      time: '1h ago',
-      read: false,
-    },
+    }
   ]);
 
   const markAsRead = (id: string) => {

@@ -16,9 +16,6 @@ export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false)
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    middleName: '',
-    lastName: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -39,21 +36,13 @@ export default function RegisterPage() {
     setIsLoading(true)
 
     const payload = {
-      personName: {
-        firstName: formData.firstName,
-        middleName: formData.middleName,
-        lastName: formData.lastName
-      },
-      userEmail: {
-        emailType: 'Personal',
-        emailAddress: formData.email
-      },
+      email: formData.email,
       password: formData.password,
       confirmPassword: formData.confirmPassword
     }
 
     try {
-      const response = await axios.post('http://localhost:5184/api/v1/RegisterUser', payload)
+      const response = await axios.post('http://localhost:5184/api/Account/register', payload)
       console.log('Success:', response.data)
 
      
@@ -98,32 +87,7 @@ export default function RegisterPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <Label htmlFor="firstName">First name</Label>
-              <Input
-                id="firstName"
-                placeholder='John'
-                type="text"
-                required
-                className="w-full"
-                value={formData.firstName}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="lastName">Last name</Label>
-              <Input
-                id="lastName"
-                type="text"
-                placeholder='Doe'
-                required
-                className="w-full"
-                value={formData.lastName}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
+          
 
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>

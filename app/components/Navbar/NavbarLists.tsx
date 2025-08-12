@@ -37,11 +37,10 @@ const navItems: NavbarItems[] = [
         title: 'Job Seekers',
         href: '/job-seekers',
         dropdownItems: [
-            { title: 'Saved Jobs', href: '/job-seekers/dashboards' },
-            { title: 'Recommendations', href: '/job-seekers/recommedations' },
+            { title: 'Dashboard', href: '/dashboard' },
             { title: 'Browse Jobs', href: '/jobs' },
-            { title: 'Career Resources', href: '/seekers/career-resources' },
-            { title: 'Resume Builder', href: '/seekers/seekers' },
+            { title: 'Complete Profile', href: '/profile' },
+            { title: 'Resume Builder', href: '/resume-builder' },
 
         ],
     },

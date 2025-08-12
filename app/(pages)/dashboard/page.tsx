@@ -72,6 +72,7 @@ const DashboardPage = () => {
   })
 
   return (
+    
     <div className="min-h-screen flex flex-col">
       <Header />
       <div className="flex flex-1">
@@ -89,6 +90,7 @@ const DashboardPage = () => {
       </div>
       <Footer />
     </div>
+   
   )
 }
 

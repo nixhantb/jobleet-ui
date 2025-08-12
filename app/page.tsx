@@ -5,7 +5,7 @@ import { JobLeetProvider } from "@/lib/Jobleetcontext";
 import { ThemeProvider } from 'next-themes'
 import Layout from "./components/Layout";
 import Hero from "./components/Hero";
-import { UserCheck, BarChart, GitBranch, Puzzle, UserPlus} from "lucide-react";
+import { UserCheck, BarChart, GitBranch, Puzzle, UserPlus } from "lucide-react";
 import Features from "./components/Features";
 import Footer from "./components/Footer/Footer"
 
@@ -48,33 +48,33 @@ export default function Home() {
 
   return (
     <Suspense>
-         <JobLeetProvider>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="system"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <Layout>
-          <main>
-            <NavbarLists/>
-            <Hero
-              title="Connecting Talent, Boosting Recruitment"
-              description="JobLeet makes hiring easy and simple by connecting top talent with the right recruiters."
-            
-            />
-             <JobApplicationWorkflow/>
-              <AboutUs/>
-              <CareerSection/>
-            <Features title="Our Services" features={features} />
-         
-           
-          </main>
-          <Footer/>
-        </Layout>
+      <JobLeetProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Layout>
+            <main>
+              <NavbarLists />
+              <Hero
+                title="Connecting Talent, Boosting Recruitment"
+                description="JobLeet makes hiring easy and simple by connecting top talent with the right recruiters."
 
-      </ThemeProvider>
-    </JobLeetProvider>
+              />
+              <JobApplicationWorkflow />
+              <AboutUs />
+              <CareerSection />
+              <Features title="Our Services" features={features} />
+
+
+            </main>
+            <Footer />
+          </Layout>
+
+        </ThemeProvider>
+      </JobLeetProvider>
     </Suspense>
   );
 }

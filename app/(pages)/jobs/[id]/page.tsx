@@ -15,7 +15,7 @@ import { ThemeProvider } from "next-themes"
 import Footer from "@/app/components/Footer/Footer"
 import { motion } from "framer-motion"
 import { fadeInUp, staggerChildren } from "./animations"
-import { AuthProvider } from "@/context/AuthContext" 
+import { AuthProvider } from "@/context/AuthContext"
 import { useAuth } from "@/context/AuthContext"
 import { useApplications } from "@/hooks/useApplication"
 import ApplyButton from "@/app/components/dashboard/ApplyButton"
@@ -41,13 +41,14 @@ const JobPageContent = () => {
 
   useEffect(() => {
     const fetchJob = async () => {
-      
+
       setLoading(true)
       try {
+        // use session storage in prod...
         const token = localStorage.getItem("token")
 
         if (!token) throw new Error("Unauthorized: No token found")
-
+        // use deployed api in prod
         const response = await fetch(`http://localhost:5184/api/v1/jobs/${params.id}`, {
           method: "GET",
           headers: {
@@ -263,5 +264,5 @@ const JobPageContent = () => {
   )
 }
 
-export default JobPageWithAuth
+export default JobPageWithAuth;
 
