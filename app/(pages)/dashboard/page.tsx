@@ -1,9 +1,9 @@
 "use client"
 import { useEffect, useState } from "react"
 import { AuthProvider, useAuth } from "@/context/AuthContext"
-import Sidebar from "@/app/components/dashboard/sidebar"
-import Header from "../../components/dashboard/header"
-import DashboardBody from "@/app/components/dashboard/DashboardBody"
+import Sidebar from "@/app/components/Dashboard/sidebar"
+import Header from "../../components/Dashboard/header"
+import DashboardBody from "@/app/components/Dashboard/DashboardBody"
 import Footer from "@/app/components/Footer/Footer"
 
 const DashboardWithAuth = () => {

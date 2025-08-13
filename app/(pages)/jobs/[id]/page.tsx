@@ -18,7 +18,7 @@ import { fadeInUp, staggerChildren } from "./animations"
 import { AuthProvider } from "@/context/AuthContext"
 import { useAuth } from "@/context/AuthContext"
 import { useApplications } from "@/hooks/useApplication"
-import ApplyButton from "@/app/components/dashboard/ApplyButton"
+import ApplyButton from "@/app/components/Dashboard/ApplyButton"
 import { Job } from "@/types/jobs"
 
 const JobPageWithAuth = () => {
