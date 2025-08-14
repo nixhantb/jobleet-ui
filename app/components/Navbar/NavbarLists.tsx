@@ -16,10 +16,8 @@ const navItems: NavbarItems[] = [
         title: 'Companies',
         href: '/companies',
         dropdownItems: [
-            { title: 'Consulting', href: '/companies/consulting' },
-            { title: 'Events', href: '/companies/events' },
-            { title: 'Job Fairs', href: '/companies/fairs' },
-            { title: 'Trainings', href: '/companies/trainings' },
+            { title: 'Consulting', href: '/contact' },
+        
 
         ],
     },
@@ -27,10 +25,10 @@ const navItems: NavbarItems[] = [
         title: 'Employers',
         href: '/employers',
         dropdownItems: [
-            { title: 'Post a Job', href: '/employers/post-job' },
-            { title: 'Tack applications', href: '/employers/applications' },
-            { title: 'Talent Pool', href: '/employers/talent-pool' },
-            { title: 'Hackathons', href: '/employers/hackathons' },
+            { title: 'Post a Job', href: '/jobs' },
+            { title: 'Tack applications', href: '/dashboard' },
+            { title: 'Talent Pool', href: '/seekers' },
+            { title: 'Hackathons', href: '/' },
         ],
     },
     {
