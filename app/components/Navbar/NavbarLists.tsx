@@ -40,7 +40,7 @@ const navItems: NavbarItems[] = [
             { title: 'Dashboard', href: '/dashboard' },
             { title: 'Browse Jobs', href: '/jobs' },
             { title: 'Complete Profile', href: '/profile' },
-            { title: 'Resume Builder', href: '/resume-builder' },
+            { title: 'Resume Builder', href: '/resume' },
 
         ],
     },
